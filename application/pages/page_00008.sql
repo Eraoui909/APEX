@@ -1,0 +1,229 @@
+prompt --application/pages/page_00008
+begin
+--   Manifest
+--     PAGE: 00008
+--   Manifest End
+wwv_flow_imp.component_begin (
+ p_version_yyyy_mm_dd=>'2023.04.28'
+,p_release=>'23.1.3'
+,p_default_workspace_id=>45415934497209978153
+,p_default_application_id=>250191
+,p_default_id_offset=>49943868195930435456
+,p_default_owner=>'WKSP_PASSMASTER'
+);
+wwv_flow_imp_page.create_page(
+ p_id=>8
+,p_name=>'Password Generator Pop Up'
+,p_alias=>'PASSWORD-GENERATOR-POP-UP'
+,p_page_mode=>'MODAL'
+,p_step_title=>'Password Generator Pop Up'
+,p_autocomplete_on_off=>'OFF'
+,p_page_template_options=>'#DEFAULT#'
+,p_dialog_chained=>'N'
+,p_protection_level=>'C'
+,p_page_component_map=>'17'
+,p_last_updated_by=>'HAMZAERAOUI2000@GMAIL.COM'
+,p_last_upd_yyyymmddhh24miss=>'20230816142125'
+);
+wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(433341718304492879)
+,p_plug_name=>'Header'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_imp.id(49936970198569197183)
+,p_plug_display_sequence=>10
+,p_plug_display_point=>'REGION_POSITION_01'
+,p_plug_display_condition_type=>'NEVER'
+,p_attribute_01=>'N'
+,p_attribute_02=>'HTML'
+);
+wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(51140481038002206693)
+,p_plug_name=>'Container'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_imp.id(49936970198569197183)
+,p_plug_display_sequence=>10
+,p_attribute_01=>'N'
+,p_attribute_02=>'HTML'
+);
+wwv_flow_imp_page.create_page_button(
+ p_id=>wwv_flow_imp.id(433341807234492880)
+,p_button_sequence=>10
+,p_button_plug_id=>wwv_flow_imp.id(433341718304492879)
+,p_button_name=>'PREV_PAGE'
+,p_button_action=>'DEFINED_BY_DA'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_imp.id(49937311341918197236)
+,p_button_image_alt=>'Prev Page'
+,p_warn_on_unsaved_changes=>null
+,p_icon_css_classes=>'fa-angle-left'
+);
+wwv_flow_imp_page.create_page_button(
+ p_id=>wwv_flow_imp.id(1514225739355786045)
+,p_button_sequence=>20
+,p_button_plug_id=>wwv_flow_imp.id(433341718304492879)
+,p_button_name=>'PREVIOUS_PAGE'
+,p_button_action=>'REDIRECT_PAGE'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_imp.id(49937312004423197236)
+,p_button_image_alt=>'Previous Page'
+,p_button_redirect_url=>'f?p=&APP_ID.:&P8_PREV_PAGE.:&SESSION.::&DEBUG.:&P8_PREV_PAGE.::'
+);
+wwv_flow_imp_page.create_page_button(
+ p_id=>wwv_flow_imp.id(763273383618278376)
+,p_button_sequence=>40
+,p_button_plug_id=>wwv_flow_imp.id(51140481038002206693)
+,p_button_name=>'Generate'
+,p_button_action=>'DEFINED_BY_DA'
+,p_button_template_options=>'#DEFAULT#:t-Button--iconLeft'
+,p_button_template_id=>wwv_flow_imp.id(49937312108330197236)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Generate'
+,p_warn_on_unsaved_changes=>null
+,p_icon_css_classes=>'fa-gear'
+,p_grid_new_row=>'Y'
+,p_grid_column_span=>2
+);
+wwv_flow_imp_page.create_page_button(
+ p_id=>wwv_flow_imp.id(763272919980278375)
+,p_button_sequence=>50
+,p_button_plug_id=>wwv_flow_imp.id(51140481038002206693)
+,p_button_name=>'Copy'
+,p_button_action=>'DEFINED_BY_DA'
+,p_button_template_options=>'#DEFAULT#:t-Button--success:t-Button--iconLeft:t-Button--hoverIconPush'
+,p_button_template_id=>wwv_flow_imp.id(49937312108330197236)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Copy'
+,p_warn_on_unsaved_changes=>null
+,p_icon_css_classes=>'fa-copy'
+,p_grid_new_row=>'N'
+,p_grid_new_column=>'Y'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(433342254057492884)
+,p_name=>'P8_PREV_PAGE'
+,p_item_sequence=>20
+,p_display_as=>'NATIVE_HIDDEN'
+,p_attribute_01=>'N'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(51140482402326206698)
+,p_name=>'P8_PASSWORD'
+,p_item_sequence=>10
+,p_item_plug_id=>wwv_flow_imp.id(51140481038002206693)
+,p_prompt=>'Password'
+,p_display_as=>'NATIVE_TEXT_FIELD'
+,p_cSize=>30
+,p_field_template=>wwv_flow_imp.id(49937109553589197235)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_01=>'N'
+,p_attribute_02=>'N'
+,p_attribute_04=>'TEXT'
+,p_attribute_05=>'BOTH'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(51140482897948206703)
+,p_name=>'P8_LENGTH'
+,p_item_sequence=>30
+,p_item_plug_id=>wwv_flow_imp.id(51140481038002206693)
+,p_item_default=>'20'
+,p_prompt=>'Length'
+,p_display_as=>'NATIVE_TEXT_FIELD'
+,p_cSize=>10
+,p_begin_on_new_line=>'N'
+,p_colspan=>2
+,p_field_template=>wwv_flow_imp.id(49937109553589197235)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_01=>'N'
+,p_attribute_02=>'N'
+,p_attribute_04=>'TEXT'
+,p_attribute_05=>'BOTH'
+);
+wwv_flow_imp_page.create_page_da_event(
+ p_id=>wwv_flow_imp.id(433342353424492885)
+,p_name=>'return to the previous page'
+,p_event_sequence=>10
+,p_triggering_element_type=>'BUTTON'
+,p_triggering_button_id=>wwv_flow_imp.id(433341807234492880)
+,p_bind_type=>'bind'
+,p_execution_type=>'IMMEDIATE'
+,p_bind_event_type=>'click'
+);
+wwv_flow_imp_page.create_page_da_action(
+ p_id=>wwv_flow_imp.id(433342469586492886)
+,p_event_id=>wwv_flow_imp.id(433342353424492885)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_JAVASCRIPT_CODE'
+,p_attribute_01=>'window.history.back()'
+);
+wwv_flow_imp_page.create_page_da_event(
+ p_id=>wwv_flow_imp.id(433342695135492888)
+,p_name=>'Generate Password'
+,p_event_sequence=>20
+,p_triggering_element_type=>'BUTTON'
+,p_triggering_button_id=>wwv_flow_imp.id(763273383618278376)
+,p_bind_type=>'bind'
+,p_execution_type=>'IMMEDIATE'
+,p_bind_event_type=>'click'
+);
+wwv_flow_imp_page.create_page_da_action(
+ p_id=>wwv_flow_imp.id(433342786824492889)
+,p_event_id=>wwv_flow_imp.id(433342695135492888)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_SET_VALUE'
+,p_affected_elements_type=>'ITEM'
+,p_affected_elements=>'P8_PASSWORD'
+,p_attribute_01=>'FUNCTION_BODY'
+,p_attribute_06=>'return app_pm_password_generator.generate_password(:P8_LENGTH);'
+,p_attribute_07=>'P8_LENGTH'
+,p_attribute_08=>'Y'
+,p_attribute_09=>'N'
+,p_wait_for_result=>'Y'
+);
+wwv_flow_imp_page.create_page_da_action(
+ p_id=>wwv_flow_imp.id(433342864209492890)
+,p_event_id=>wwv_flow_imp.id(433342695135492888)
+,p_event_result=>'TRUE'
+,p_action_sequence=>20
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_REFRESH'
+,p_affected_elements_type=>'ITEM'
+,p_affected_elements=>'P8_PASSWORD'
+);
+wwv_flow_imp_page.create_page_da_event(
+ p_id=>wwv_flow_imp.id(433342981250492891)
+,p_name=>'Copy Password'
+,p_event_sequence=>30
+,p_triggering_element_type=>'BUTTON'
+,p_triggering_button_id=>wwv_flow_imp.id(763272919980278375)
+,p_bind_type=>'bind'
+,p_execution_type=>'IMMEDIATE'
+,p_bind_event_type=>'click'
+);
+wwv_flow_imp_page.create_page_da_action(
+ p_id=>wwv_flow_imp.id(433343054133492892)
+,p_event_id=>wwv_flow_imp.id(433342981250492891)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'Y'
+,p_name=>'Copy Password'
+,p_action=>'NATIVE_SHOW'
+,p_affected_elements_type=>'JAVASCRIPT_EXPRESSION'
+,p_affected_elements=>'copyPassword(null, ''P8_PASSWORD'');'
+);
+wwv_flow_imp_page.create_page_da_action(
+ p_id=>wwv_flow_imp.id(433343133900492893)
+,p_event_id=>wwv_flow_imp.id(433342981250492891)
+,p_event_result=>'TRUE'
+,p_action_sequence=>20
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_ALERT'
+,p_attribute_01=>'Password Copied'
+,p_attribute_02=>'Copy to Clipboard'
+);
+wwv_flow_imp.component_end;
+end;
+/

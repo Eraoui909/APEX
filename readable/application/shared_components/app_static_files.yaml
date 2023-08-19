@@ -1,0 +1,64 @@
+---
+- # ====== Static Application File: scripts/core.js ============
+  id: 145578416809963471
+  identification: 
+    file-name: scripts/core.js
+
+  attributes: 
+    mime-type: text/javascript
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: scripts/core.min.js ========
+  id: 656872519786637109
+  identification: 
+    file-name: scripts/core.min.js
+
+  attributes: 
+    mime-type: text/javascript
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: icons/app-icon-32.png ======
+  id: 49937420969299197294
+  identification: 
+    file-name: icons/app-icon-32.png
+
+  attributes: 
+    mime-type: image/png
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: icons/app-icon-144-rounded.p
+  id: 49937421296331197295
+  identification: 
+    file-name: icons/app-icon-144-rounded.png
+
+  attributes: 
+    mime-type: image/png
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: icons/app-icon-192.png =====
+  id: 49937421556981197295
+  identification: 
+    file-name: icons/app-icon-192.png
+
+  attributes: 
+    mime-type: image/png
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: icons/app-icon-256-rounded.p
+  id: 49937421835673197295
+  identification: 
+    file-name: icons/app-icon-256-rounded.png
+
+  attributes: 
+    mime-type: image/png
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: icons/app-icon-512.png =====
+  id: 49937422103008197295
+  identification: 
+    file-name: icons/app-icon-512.png
+
+  attributes: 
+    mime-type: image/png
+    file-character-set: Unicode UTF-8
+

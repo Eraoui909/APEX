@@ -1,0 +1,538 @@
+---
+# ====== Page: Password Generator Pop Up =====================
+id: 8
+identification: 
+  name: Password Generator Pop Up
+  alias: PASSWORD-GENERATOR-POP-UP
+  title: Password Generator Pop Up
+
+appearance: 
+  page-mode: Modal Dialog
+  dialog-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+dialog: 
+  chained: false
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: Header ======================================
+  id: 433341718304492879
+  identification: 
+    title: Header
+    type: Static Content
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    position: REGION_POSITION_01
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes # 49936970198569197183
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-side-condition: 
+    type: Never
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+- # ====== Region: Container ===================================
+  id: 51140481038002206693
+  identification: 
+    title: Container
+    type: Static Content
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    position: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes # 49936970198569197183
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+page-items: 
+- # ====== Page Item: P8_PREV_PAGE =============================
+  id: 433342254057492884
+  identification: 
+    name: P8_PREV_PAGE
+    type: Hidden
+
+  settings: 
+    value-protected: false
+
+  layout: 
+    sequence: 20
+    region: No Parent
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Session (Persistent)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P8_PASSWORD ==============================
+  id: 51140482402326206698
+  identification: 
+    name: P8_PASSWORD
+    type: Text Field
+
+  label: 
+    label: Password
+    alignment: Left
+
+  settings: 
+    subtype: Text
+    trim-spaces: Leading and Trailing
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 10
+    region: Container # 51140481038002206693
+    position: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating # 49937109553589197235
+    template-options: 
+    - '#DEFAULT#'
+    width: 30
+
+  validation: 
+    value-required: false
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P8_LENGTH ================================
+  id: 51140482897948206703
+  identification: 
+    name: P8_LENGTH
+    type: Text Field
+
+  label: 
+    label: Length
+    alignment: Left
+
+  settings: 
+    subtype: Text
+    trim-spaces: Leading and Trailing
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 30
+    region: Container # 51140481038002206693
+    position: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: 2
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating # 49937109553589197235
+    template-options: 
+    - '#DEFAULT#'
+    width: 10
+
+  validation: 
+    value-required: false
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  default: 
+    type: Static
+    static-value: 20
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+buttons: 
+- # ====== Button: PREV_PAGE ===================================
+  id: 433341807234492880
+  identification: 
+    button-name: PREV_PAGE
+    label: Prev Page
+
+  layout: 
+    sequence: 10
+    region: Header # 433341718304492879
+    position: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    alignment: Left center
+
+  appearance: 
+    button-template: Icon # 49937311341918197236
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+    icon: fa-angle-left
+
+  behavior: 
+    action: Defined by Dynamic Action
+    execute-validations: true
+
+- # ====== Button: Copy ========================================
+  id: 763272919980278375
+  identification: 
+    button-name: Copy
+    label: Copy
+
+  layout: 
+    sequence: 50
+    region: Container # 51140481038002206693
+    position: BODY
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    alignment: Left center
+
+  appearance: 
+    button-template: Text with Icon # 49937312108330197236
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--success
+    - t-Button--iconLeft
+    - t-Button--hoverIconPush
+    icon: fa-copy
+
+  behavior: 
+    action: Defined by Dynamic Action
+    execute-validations: true
+
+- # ====== Button: Generate ====================================
+  id: 763273383618278376
+  identification: 
+    button-name: Generate
+    label: Generate
+
+  layout: 
+    sequence: 40
+    region: Container # 51140481038002206693
+    position: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: 2
+    alignment: Left center
+
+  appearance: 
+    button-template: Text with Icon # 49937312108330197236
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--iconLeft
+    icon: fa-gear
+
+  behavior: 
+    action: Defined by Dynamic Action
+    execute-validations: true
+
+- # ====== Button: PREVIOUS_PAGE ===============================
+  id: 1514225739355786045
+  identification: 
+    button-name: PREVIOUS_PAGE
+    label: Previous Page
+
+  layout: 
+    sequence: 20
+    region: Header # 433341718304492879
+    position: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    alignment: Left center
+
+  appearance: 
+    button-template: Text # 49937312004423197236
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:&P8_PREV_PAGE.:&SESSION.::&DEBUG.:&P8_PREV_PAGE.::'
+      page: '&P8_PREV_PAGE.'
+      clear-cache: '&P8_PREV_PAGE.'
+
+    warn-on-unsaved-changes: Do Not Check
+
+dynamic-actions: 
+- # ====== Dynamic Action: return to the previous page =========
+  id: 433342353424492885
+  identification: 
+    name: return to the previous page
+
+  execution: 
+    sequence: 10
+
+  when: 
+    event: EVENT.EVENT.BROWSER.CLICK
+    selection-type: Button
+    button: PREV_PAGE # 433341807234492880
+
+  execution: 
+    event-scope: Static
+    type: Immediate
+
+  actions: 
+  - # ====== Action: Execute JavaScript Code =====================
+    id: 433342469586492886
+    identification: 
+      action: Execute JavaScript Code
+
+    settings: 
+      code: window.history.back()
+
+    execution: 
+      sequence: 10
+      event: return to the previous page # 433342353424492885
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+- # ====== Dynamic Action: Generate Password ===================
+  id: 433342695135492888
+  identification: 
+    name: Generate Password
+
+  execution: 
+    sequence: 20
+
+  when: 
+    event: EVENT.EVENT.BROWSER.CLICK
+    selection-type: Button
+    button: Generate # 763273383618278376
+
+  execution: 
+    event-scope: Static
+    type: Immediate
+
+  actions: 
+  - # ====== Action: Set Value ===================================
+    id: 433342786824492889
+    identification: 
+      action: Set Value
+
+    settings: 
+      set-type: PL/SQL Function Body
+      pl/sql-function-body: 'return app_pm_password_generator.generate_password(:P8_LENGTH);'
+      items-to-submit: 
+      - P8_LENGTH
+      escape-special-characters: true
+      suppress-change-event: false
+
+    affected-elements: 
+      selection-type: Item(s)
+      item(s): 
+      - P8_PASSWORD
+
+    execution: 
+      sequence: 10
+      event: Generate Password # 433342695135492888
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+      stop-execution-on-error: true
+      wait-for-result: true
+
+  - # ====== Action: Refresh =====================================
+    id: 433342864209492890
+    identification: 
+      action: Refresh
+
+    affected-elements: 
+      selection-type: Item(s)
+      item(s): 
+      - P8_PASSWORD
+
+    execution: 
+      sequence: 20
+      event: Generate Password # 433342695135492888
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+- # ====== Dynamic Action: Copy Password =======================
+  id: 433342981250492891
+  identification: 
+    name: Copy Password
+
+  execution: 
+    sequence: 30
+
+  when: 
+    event: EVENT.EVENT.BROWSER.CLICK
+    selection-type: Button
+    button: Copy # 763272919980278375
+
+  execution: 
+    event-scope: Static
+    type: Immediate
+
+  actions: 
+  - # ====== Action: Copy Password ===============================
+    id: 433343054133492892
+    identification: 
+      name: Copy Password
+      action: Show
+
+    affected-elements: 
+      selection-type: JavaScript Expression
+      javascript-expression: copyPassword(null, 'P8_PASSWORD');
+
+    execution: 
+      sequence: 10
+      event: Copy Password # 433342981250492891
+      fire-when-event-result-is: True
+      fire-on-initialization: true
+
+  - # ====== Action: Alert =======================================
+    id: 433343133900492893
+    identification: 
+      action: Alert
+
+    settings: 
+      title: Copy to Clipboard
+      message: Password Copied
+      style: Default
+
+    execution: 
+      sequence: 20
+      event: Copy Password # 433342981250492891
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+

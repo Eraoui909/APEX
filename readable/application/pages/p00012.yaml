@@ -1,0 +1,2000 @@
+---
+# ====== Page: My Account ====================================
+id: 12
+identification: 
+  name: My Account
+  alias: MY-ACCOUNT
+  title: My Account
+
+appearance: 
+  page-mode: Normal
+  page-template: Left Side Column # 49936937190538197169
+  template-options: 
+  - '#DEFAULT#'
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: false
+
+css: 
+  inline: |
+    /* Scroll Results Only in Side Column */
+    .t-Body-side {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+    .search-results {
+        flex: 1;
+        overflow: auto;
+    }
+    /* Format Search Region */
+    .search-region {
+        border-bottom: 1px solid rgba(0,0,0,.1);
+        flex-shrink: 0;
+    }
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: On
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: No - Prevent page from being re-posted
+  reload-on-submit: Always
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: Breadcrumb ==================================
+  id: 434534407856542110
+  identification: 
+    title: Breadcrumb
+    type: Breadcrumb
+
+  source: 
+    breadcrumb: Breadcrumb # 49936933414415197166
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    position: REGION_POSITION_01
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Title Bar # 49937050198729197212
+    template-options: 
+    - '#DEFAULT#'
+    - t-BreadcrumbRegion--useBreadcrumbTitle
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    appearance: 
+      breadcrumb-template: Breadcrumb # 49937313668435197237
+      template-options: 
+      - '#DEFAULT#'
+
+- # ====== Region: Search ======================================
+  id: 434535862484542112
+  identification: 
+    title: Search
+    type: Static Content
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    position: REGION_POSITION_02
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes # 49936970198569197183
+    template-options: 
+    - '#DEFAULT#'
+    - t-Form--stretchInputs
+    css-classes: 
+    - search-region
+    - padding-md
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+- # ====== Region: Master Records ==============================
+  id: 434536630499542113
+  identification: 
+    title: Master Records
+    type: Classic Report
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      select "ID",
+          null LINK_CLASS,
+          apex_page.get_url(p_items => 'P12_ID', p_values => "ID") LINK,
+          null ICON_CLASS,
+          null LINK_ATTR,
+          null ICON_COLOR_CLASS,
+          case when coalesce(:P12_ID,'0') = "ID"
+            then 'is-active' 
+            else ' '
+          end LIST_CLASS,
+          (substr("ACCOUNT_NAME", 1, 50)||( case when length("ACCOUNT_NAME") > 50 then '...' else '' end )) LIST_TITLE,
+          (substr("EMAIL", 1, 50)||( case when length("EMAIL") > 50 then '...' else '' end )) LIST_TEXT,
+          null LIST_BADGE,
+          case 
+            when picture is not null then base64encode(PICTURE) 
+            else null
+          end IMAGE_BLOB,
+          mime_type,
+          filename
+      from "APP_PM_ACCOUNTS" x
+      where (:P12_SEARCH is null
+              or upper(x."ACCOUNT_NAME") like '%'||upper(:P12_SEARCH)||'%'
+              or upper(x."EMAIL") like '%'||upper(:P12_SEARCH)||'%'
+          )
+      order by "ACCOUNT_NAME"
+    page-items-to-submit: 
+    - P12_SEARCH
+
+  layout: 
+    sequence: 20
+    parent-region: No Parent
+    position: REGION_POSITION_02
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes (No Grid) # 49936971552486197183
+    template-options: 
+    - '#DEFAULT#'
+    css-classes: 
+    - search-results
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    layout: 
+      number-of-rows-type: Static Value
+      number-of-rows: 1000
+
+    appearance: 
+      template-type: Theme
+      template: Media List Customized # 212282139552439621
+      template-options: 
+      - '#DEFAULT#'
+      - t-MediaList--stack
+
+    pagination: 
+      type: No Pagination (Show All Rows)
+      partial-page-refresh: true
+
+    performance: 
+      lazy-loading: false
+      maximum-rows-to-process: 500
+
+    messages: 
+      when-no-data-found: <div class="u-tC">No data found.</div>
+
+    break-formatting: 
+      break-columns: No Break
+
+    advanced: 
+      strip-html: false
+      sort-nulls: Last
+
+    heading: 
+      type: Custom Headings
+
+    download: 
+      csv-export-enabled: false
+
+    printing: 
+      enabled: false
+
+  columns: 
+  - # ====== Column: IMAGE_BLOB ==================================
+    id: 433339836306492860
+    identification: 
+      column-name: IMAGE_BLOB
+      type: Plain Text
+
+    heading: 
+      heading: Image Blob
+      alignment: start
+
+    layout: 
+      sequence: 20
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: false
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: MIME_TYPE ===================================
+    id: 433339906742492861
+    identification: 
+      column-name: MIME_TYPE
+      type: Plain Text
+
+    heading: 
+      heading: Mime Type
+      alignment: start
+
+    layout: 
+      sequence: 30
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: false
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: FILENAME ====================================
+    id: 433340056218492862
+    identification: 
+      column-name: FILENAME
+      type: Plain Text
+
+    heading: 
+      heading: Filename
+      alignment: start
+
+    layout: 
+      sequence: 40
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: false
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: ID ==========================================
+    id: 434537400493542115
+    identification: 
+      column-name: ID
+      type: Plain Text
+
+    heading: 
+      heading: ID
+      alignment: center
+
+    layout: 
+      sequence: 1
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: false
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: LINK_CLASS ==================================
+    id: 434537784572542115
+    identification: 
+      column-name: LINK_CLASS
+      type: Plain Text
+
+    heading: 
+      heading: LINK_CLASS
+      alignment: center
+
+    layout: 
+      sequence: 2
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: false
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: LINK ========================================
+    id: 434538166275542115
+    identification: 
+      column-name: LINK
+      type: Plain Text
+
+    heading: 
+      heading: LINK
+      alignment: center
+
+    layout: 
+      sequence: 3
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: false
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: ICON_CLASS ==================================
+    id: 434538600134542115
+    identification: 
+      column-name: ICON_CLASS
+      type: Plain Text
+
+    heading: 
+      heading: ICON_CLASS
+      alignment: center
+
+    layout: 
+      sequence: 4
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: false
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: LINK_ATTR ===================================
+    id: 434538940403542116
+    identification: 
+      column-name: LINK_ATTR
+      type: Plain Text
+
+    heading: 
+      heading: LINK_ATTR
+      alignment: center
+
+    layout: 
+      sequence: 5
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: false
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: ICON_COLOR_CLASS ============================
+    id: 434539362550542116
+    identification: 
+      column-name: ICON_COLOR_CLASS
+      type: Plain Text
+
+    heading: 
+      heading: ICON_COLOR_CLASS
+      alignment: center
+
+    layout: 
+      sequence: 6
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: false
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: LIST_CLASS ==================================
+    id: 434539710639542116
+    identification: 
+      column-name: LIST_CLASS
+      type: Plain Text
+
+    heading: 
+      heading: LIST_CLASS
+      alignment: center
+
+    layout: 
+      sequence: 7
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: false
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: LIST_TITLE ==================================
+    id: 434540168694542117
+    identification: 
+      column-name: LIST_TITLE
+      type: Plain Text
+
+    heading: 
+      heading: LIST_TITLE
+      alignment: center
+
+    layout: 
+      sequence: 8
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: false
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: LIST_TEXT ===================================
+    id: 434540518934542117
+    identification: 
+      column-name: LIST_TEXT
+      type: Plain Text
+
+    heading: 
+      heading: LIST_TEXT
+      alignment: center
+
+    layout: 
+      sequence: 9
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: false
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: LIST_BADGE ==================================
+    id: 434540948687542117
+    identification: 
+      column-name: LIST_BADGE
+      type: Plain Text
+
+    heading: 
+      heading: LIST_BADGE
+      alignment: center
+
+    layout: 
+      sequence: 10
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: false
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+- # ====== Region: Account Details =============================
+  id: 434541948416542269
+  identification: 
+    title: Account Details
+    type: Classic Report
+
+  source: 
+    location: Local Database
+    type: Table / View
+    table-owner: Parsing Schema
+    table-name: APP_PM_ACCOUNTS
+    include-rowid-column: false
+    where-clause: '"ID" = :P12_ID'
+
+  order-by: 
+    type: None
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    position: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Standard # 49937037159337197207
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--noPadding
+    - t-Region--scrollBody
+    css-classes: 
+    - js-master-region
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-side-condition: 
+    type: Item is NOT NULL
+    item: P12_ID
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    layout: 
+      number-of-rows-type: Static Value
+      number-of-rows: 15
+
+    appearance: 
+      template-type: Theme
+      template: Value Attribute Pairs - Column # 49937080004315197223
+      template-options: 
+      - '#DEFAULT#'
+      - t-AVPList--leftAligned
+
+    pagination: 
+      type: No Pagination (Show All Rows)
+      partial-page-refresh: true
+
+    performance: 
+      lazy-loading: false
+      maximum-rows-to-process: 500
+
+    messages: 
+      when-no-data-found: No Record Selected
+
+    break-formatting: 
+      break-columns: No Break
+
+    advanced: 
+      strip-html: true
+      sort-nulls: Last
+
+    heading: 
+      type: Custom Headings
+
+    download: 
+      csv-export-enabled: false
+
+    printing: 
+      enabled: false
+
+  columns: 
+  - # ====== Column: URL =========================================
+    id: 2745234337877848
+    identification: 
+      column-name: URL
+      type: Plain Text
+
+    heading: 
+      heading: Url
+      alignment: start
+
+    layout: 
+      sequence: 106
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    column-formatting: 
+      html-expression: <a href="#URL#" target="blanck">#URL#</a>
+
+    sorting: 
+      sortable: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    server-side-condition: 
+      type: Rows returned
+      sql-query: |
+        select 1 from "APP_PM_ACCOUNTS"
+        where "URL" is not null
+        and "ID" = :P12_ID
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: ID ==========================================
+    id: 434542511039542270
+    identification: 
+      column-name: ID
+      type: Hidden Column
+
+    layout: 
+      sequence: 1
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    server-side-condition: 
+      type: Rows returned
+      sql-query: |
+        select 1 from "APP_PM_ACCOUNTS"
+        where "ID" is not null
+        and "ID" = :P12_ID
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: ACCOUNT_NAME ================================
+    id: 434542910750542270
+    identification: 
+      column-name: ACCOUNT_NAME
+      type: Plain Text
+
+    heading: 
+      heading: Account Name
+      alignment: start
+
+    layout: 
+      sequence: 2
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: false
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    server-side-condition: 
+      type: Rows returned
+      sql-query: |
+        select 1 from "APP_PM_ACCOUNTS"
+        where "ACCOUNT_NAME" is not null
+        and "ID" = :P12_ID
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: USERNAME ====================================
+    id: 434543382838542270
+    identification: 
+      column-name: USERNAME
+      type: Plain Text
+
+    heading: 
+      heading: Username
+      alignment: start
+
+    layout: 
+      sequence: 3
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: false
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    server-side-condition: 
+      type: Rows returned
+      sql-query: |
+        select 1 from "APP_PM_ACCOUNTS"
+        where "USERNAME" is not null
+        and "ID" = :P12_ID
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: EMAIL =======================================
+    id: 434543791249542270
+    identification: 
+      column-name: EMAIL
+      type: Plain Text
+
+    heading: 
+      heading: Email
+      alignment: start
+
+    layout: 
+      sequence: 4
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: false
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    server-side-condition: 
+      type: Rows returned
+      sql-query: |
+        select 1 from "APP_PM_ACCOUNTS"
+        where "EMAIL" is not null
+        and "ID" = :P12_ID
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: PHONE =======================================
+    id: 434544151943542270
+    identification: 
+      column-name: PHONE
+      type: Plain Text
+
+    heading: 
+      heading: Phone
+      alignment: start
+
+    layout: 
+      sequence: 5
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: false
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    server-side-condition: 
+      type: Rows returned
+      sql-query: |
+        select 1 from "APP_PM_ACCOUNTS"
+        where "PHONE" is not null
+        and "ID" = :P12_ID
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: PASSWORD ====================================
+    id: 434544586202542271
+    identification: 
+      column-name: PASSWORD
+      type: Plain Text
+
+    heading: 
+      heading: Password
+      alignment: start
+
+    layout: 
+      sequence: 6
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    column-formatting: 
+      html-expression: |
+        {with/}
+                PASSWORD:=#PASSWORD#
+        {apply TOGGLE_PASSWORD/}
+        
+        
+
+    sorting: 
+      sortable: false
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    server-side-condition: 
+      type: Rows returned
+      sql-query: |
+        select 1 from "APP_PM_ACCOUNTS"
+        where "PASSWORD" is not null
+        and "ID" = :P12_ID
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: PICTURE =====================================
+    id: 434544993710542271
+    identification: 
+      column-name: PICTURE
+      type: Hidden Column
+
+    layout: 
+      sequence: 26
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    server-side-condition: 
+      type: Rows returned
+      sql-query: |
+        select 1 from "APP_PM_ACCOUNTS"
+        where "PICTURE" is not null
+        and "ID" = :P12_ID
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: MIME_TYPE ===================================
+    id: 434545321615542271
+    identification: 
+      column-name: MIME_TYPE
+      type: Hidden Column
+
+    layout: 
+      sequence: 36
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    server-side-condition: 
+      type: Rows returned
+      sql-query: |
+        select 1 from "APP_PM_ACCOUNTS"
+        where "MIME_TYPE" is not null
+        and "ID" = :P12_ID
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: FILENAME ====================================
+    id: 434545751600542271
+    identification: 
+      column-name: FILENAME
+      type: Hidden Column
+
+    layout: 
+      sequence: 46
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    server-side-condition: 
+      type: Rows returned
+      sql-query: |
+        select 1 from "APP_PM_ACCOUNTS"
+        where "FILENAME" is not null
+        and "ID" = :P12_ID
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: ROW_VERSION =================================
+    id: 434546136379542271
+    identification: 
+      column-name: ROW_VERSION
+      type: Hidden Column
+
+    layout: 
+      sequence: 56
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    server-side-condition: 
+      type: Rows returned
+      sql-query: |
+        select 1 from "APP_PM_ACCOUNTS"
+        where "ROW_VERSION" is not null
+        and "ID" = :P12_ID
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: CREATED =====================================
+    id: 434546567720542272
+    identification: 
+      column-name: CREATED
+      type: Hidden Column
+
+    layout: 
+      sequence: 66
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    server-side-condition: 
+      type: Rows returned
+      sql-query: |
+        select 1 from "APP_PM_ACCOUNTS"
+        where "CREATED" is not null
+        and "ID" = :P12_ID
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: CREATED_BY ==================================
+    id: 434546956658542272
+    identification: 
+      column-name: CREATED_BY
+      type: Hidden Column
+
+    layout: 
+      sequence: 76
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    server-side-condition: 
+      type: Rows returned
+      sql-query: |
+        select 1 from "APP_PM_ACCOUNTS"
+        where "CREATED_BY" is not null
+        and "ID" = :P12_ID
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: UPDATED =====================================
+    id: 434547353416542272
+    identification: 
+      column-name: UPDATED
+      type: Hidden Column
+
+    layout: 
+      sequence: 86
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    server-side-condition: 
+      type: Rows returned
+      sql-query: |
+        select 1 from "APP_PM_ACCOUNTS"
+        where "UPDATED" is not null
+        and "ID" = :P12_ID
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: UPDATED_BY ==================================
+    id: 434547776891542272
+    identification: 
+      column-name: UPDATED_BY
+      type: Hidden Column
+
+    layout: 
+      sequence: 96
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    server-side-condition: 
+      type: Rows returned
+      sql-query: |
+        select 1 from "APP_PM_ACCOUNTS"
+        where "UPDATED_BY" is not null
+        and "ID" = :P12_ID
+
+    security: 
+      escape-special-characters: true
+
+- # ====== Region: Region Display Selector =====================
+  id: 434557295001542278
+  identification: 
+    title: Region Display Selector
+    type: Region Display Selector
+
+  layout: 
+    sequence: 20
+    parent-region: No Parent
+    position: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes # 49936970198569197183
+    template-options: 
+    - '#DEFAULT#'
+    - margin-bottom-md
+    css-classes: 
+    - js-detail-rds
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: true
+    exclude-title-from-translation: false
+
+  server-side-condition: 
+    type: Item is NOT NULL
+    item: P12_ID
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      mode: View Single Region
+      display-region-icons: false
+      include-'show-all': true
+      remember-selection: N
+
+- # ====== Region: Other Attributes ============================
+  id: 434557688015542279
+  identification: 
+    title: Other Attributes
+    type: Classic Report
+
+  source: 
+    location: Local Database
+    type: Table / View
+    table-owner: Parsing Schema
+    table-name: APP_PM_OTHER_ATTRIBUTES
+    include-rowid-column: true
+    where-clause: '"ACCOUNT_ID" = :P12_ID'
+
+  order-by: 
+    type: None
+
+  layout: 
+    sequence: 30
+    parent-region: No Parent
+    position: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Standard # 49937037159337197207
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--noPadding
+    - t-Region--scrollBody
+    css-classes: 
+    - js-detail-region
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: true
+    exclude-title-from-translation: false
+
+  server-side-condition: 
+    type: Item is NOT NULL
+    item: P12_ID
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    layout: 
+      number-of-rows-type: Static Value
+      number-of-rows: 100
+
+    appearance: 
+      template-type: Theme
+      template: Standard # 49937077061981197222
+      template-options: 
+      - t-Report--stretch
+      - '#DEFAULT#'
+      - t-Report--altRowsDefault
+      - t-Report--rowHighlight
+      - t-Report--inline
+
+    pagination: 
+      type: Row Ranges X to Y (with next and previous links)
+      display-position: Bottom - Right
+      partial-page-refresh: true
+
+    performance: 
+      lazy-loading: false
+      maximum-rows-to-process: 5000
+
+    messages: 
+      when-no-data-found: No data found.
+
+    break-formatting: 
+      break-columns: No Break
+
+    advanced: 
+      strip-html: true
+      sort-nulls: Last
+
+    heading: 
+      type: Custom Headings
+
+    download: 
+      csv-export-enabled: false
+
+    printing: 
+      enabled: false
+
+  columns: 
+  - # ====== Column: ROWID =======================================
+    id: 434558529588542354
+    identification: 
+      column-name: ROWID
+      type: Link
+
+    heading: 
+      heading: <span class="u-VisuallyHidden">Edit</span>
+      alignment: start
+
+    layout: 
+      sequence: 1
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:14:&APP_SESSION.::&DEBUG.:RP:P14_ROWID:#ROWID#'
+        page: 14 # App Pm Other Attributes
+        clear-cache: RP
+        values: 
+          p14_rowid: '#ROWID#'
+
+      link-text: <span role="img" aria-label="Edit"><span class="fa fa-edit" aria-hidden="true" title="Edit"></span></span>
+
+    sorting: 
+      sortable: false
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      cell-width: 32
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: ID ==========================================
+    id: 434558937464542354
+    identification: 
+      column-name: ID
+      type: Hidden Column
+
+    layout: 
+      sequence: 2
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: ACCOUNT_ID ==================================
+    id: 434559374755542355
+    identification: 
+      column-name: ACCOUNT_ID
+      type: Hidden Column
+
+    layout: 
+      sequence: 3
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: ATTRIBUTE_NAME ==============================
+    id: 434559779654542355
+    identification: 
+      column-name: ATTRIBUTE_NAME
+      type: Plain Text
+
+    heading: 
+      heading: Attribute Name
+      alignment: start
+
+    layout: 
+      sequence: 4
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: false
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: ATTRIBUTE_VALUE =============================
+    id: 434560189172542355
+    identification: 
+      column-name: ATTRIBUTE_VALUE
+      type: Plain Text
+
+    heading: 
+      heading: Attribute Value
+      alignment: start
+
+    layout: 
+      sequence: 5
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: false
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: ROW_VERSION =================================
+    id: 434560573305542355
+    identification: 
+      column-name: ROW_VERSION
+      type: Hidden Column
+
+    layout: 
+      sequence: 6
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: CREATED =====================================
+    id: 434560930825542355
+    identification: 
+      column-name: CREATED
+      type: Hidden Column
+
+    layout: 
+      sequence: 7
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: CREATED_BY ==================================
+    id: 434561363527542356
+    identification: 
+      column-name: CREATED_BY
+      type: Hidden Column
+
+    layout: 
+      sequence: 8
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: UPDATED =====================================
+    id: 434561741498542356
+    identification: 
+      column-name: UPDATED
+      type: Hidden Column
+
+    layout: 
+      sequence: 9
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: UPDATED_BY ==================================
+    id: 434562157233542356
+    identification: 
+      column-name: UPDATED_BY
+      type: Hidden Column
+
+    layout: 
+      sequence: 10
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+- # ====== Region: No Record Selected ==========================
+  id: 434581432905542377
+  identification: 
+    title: No Record Selected
+    type: Static Content
+
+  source: 
+    html-code: No Record Selected
+
+  layout: 
+    sequence: 70
+    parent-region: No Parent
+    position: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes # 49936970198569197183
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-side-condition: 
+    type: Item is NULL
+    item: P12_ID
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+page-items: 
+- # ====== Page Item: P12_SEARCH ===============================
+  id: 434536376983542113
+  identification: 
+    name: P12_SEARCH
+    type: Text Field
+
+  label: 
+    label: Search
+    alignment: Right
+
+  settings: 
+    subtype: Text
+    trim-spaces: Leading and Trailing
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 10
+    region: Search # 434535862484542112
+    position: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Hidden # 49937109260333197235
+    template-options: 
+    - '#DEFAULT#'
+    - t-Form-fieldContainer--large
+    - t-Form-fieldContainer--postTextBlock
+    icon: fa-search
+    width: 30
+    value-placeholder: Search...
+
+  validation: 
+    value-required: false
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P12_ID ===================================
+  id: 434556916915542278
+  identification: 
+    name: P12_ID
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 40
+    region: Account Details # 434541948416542269
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Session (Persistent)
+
+  security: 
+    session-state-protection: Checksum Required - Session Level
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+buttons: 
+- # ====== Button: RESET =======================================
+  id: 434535113338542112
+  identification: 
+    button-name: RESET
+    label: Reset
+
+  layout: 
+    sequence: 10
+    region: Breadcrumb # 434534407856542110
+    position: NEXT
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text with Icon # 49937312108330197236
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--noUI
+    - t-Button--iconLeft
+    - t-Button--gapRight
+    icon: fa-undo-alt
+
+  behavior: 
+    action: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:12:&APP_SESSION.:RESET:&DEBUG.:RP,12::'
+      page: 12 # My Account
+      request: RESET
+      clear-cache: RP,12
+
+    warn-on-unsaved-changes: Do Not Check
+
+- # ====== Button: CREATE ======================================
+  id: 434535600847542112
+  identification: 
+    button-name: CREATE
+    label: Create
+
+  layout: 
+    sequence: 20
+    region: Breadcrumb # 434534407856542110
+    position: NEXT
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text with Icon # 49937312108330197236
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--iconLeft
+    icon: fa-plus
+
+  behavior: 
+    action: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:13:&APP_SESSION.::&DEBUG.:RP,13::'
+      page: 13 # App Pm Accounts
+      clear-cache: RP,13
+
+    warn-on-unsaved-changes: Do Not Check
+
+- # ====== Button: POP_APP_PM_OTHER_ATTRIBUTES =================
+  id: 434566221939542359
+  identification: 
+    button-name: POP_APP_PM_OTHER_ATTRIBUTES
+    label: Add App Pm Other Attributes
+
+  layout: 
+    sequence: 10
+    region: Other Attributes # 434557688015542279
+    position: EDIT
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Icon # 49937311341918197236
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--noUI
+    icon: fa-plus
+
+  behavior: 
+    action: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:14:&APP_SESSION.::&DEBUG.:RP,14:P14_ACCOUNT_ID:&P12_ID.'
+      page: 14 # App Pm Other Attributes
+      clear-cache: RP,14
+      values: 
+        p14_account_id: '&P12_ID.'
+
+    warn-on-unsaved-changes: Do Not Check
+
+- # ====== Button: EDIT ========================================
+  id: 434581923155542378
+  identification: 
+    button-name: EDIT
+    label: Edit
+
+  layout: 
+    sequence: 20
+    region: Account Details # 434541948416542269
+    position: EDIT
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text with Icon # 49937312108330197236
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--noUI
+    - t-Button--iconLeft
+    icon: fa-pencil-square-o
+
+  behavior: 
+    action: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:13:&APP_SESSION.::&DEBUG.:RP,13:P13_ID:&P12_ID.'
+      page: 13 # App Pm Accounts
+      clear-cache: RP,13
+      values: 
+        p13_id: '&P12_ID.'
+
+    warn-on-unsaved-changes: Do Not Check
+
+  advanced: 
+    static-id: edit_master_btn
+
+dynamic-actions: 
+- # ====== Dynamic Action: Dialog Closed =======================
+  id: 434557725481542279
+  identification: 
+    name: Dialog Closed
+
+  execution: 
+    sequence: 40
+
+  when: 
+    event: EVENT.EVENT.FAMEWORK.APEXAFTERCLOSEDIALOG
+    selection-type: Region
+    region: Other Attributes # 434557688015542279
+
+  execution: 
+    event-scope: Static
+    type: Immediate
+
+  actions: 
+  - # ====== Action: Refresh =====================================
+    id: 434566957671542360
+    identification: 
+      action: Refresh
+
+    affected-elements: 
+      selection-type: Region
+      region: Other Attributes # 434557688015542279
+
+    execution: 
+      sequence: 10
+      event: Dialog Closed # 434557725481542279
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+  - # ====== Action: Execute JavaScript Code =====================
+    id: 434567422713542360
+    identification: 
+      action: Execute JavaScript Code
+
+    settings: 
+      code: apex.message.showPageSuccess('App Pm Other Attributes row(s) updated.');
+
+    execution: 
+      sequence: 20
+      event: Dialog Closed # 434557725481542279
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+- # ====== Dynamic Action: Dialog Closed =======================
+  id: 434582231117542378
+  identification: 
+    name: Dialog Closed
+
+  execution: 
+    sequence: 10
+
+  when: 
+    event: EVENT.EVENT.FAMEWORK.APEXAFTERCLOSEDIALOG
+    selection-type: Region
+    region: Account Details # 434541948416542269
+
+  execution: 
+    event-scope: Static
+    type: Immediate
+
+  actions: 
+  - # ====== Action: Refresh =====================================
+    id: 434582872944542378
+    identification: 
+      action: Refresh
+
+    affected-elements: 
+      selection-type: Region
+      region: Account Details # 434541948416542269
+
+    execution: 
+      sequence: 20
+      event: Dialog Closed # 434582231117542378
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+  - # ====== Action: Execute JavaScript Code =====================
+    id: 434583349964542378
+    identification: 
+      action: Execute JavaScript Code
+
+    settings: 
+      code: apex.message.showPageSuccess('App Pm Accounts row(s) updated.');
+
+    execution: 
+      sequence: 30
+      event: Dialog Closed # 434582231117542378
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+- # ====== Dynamic Action: Perform Search ======================
+  id: 434582365148542378
+  identification: 
+    name: Perform Search
+
+  execution: 
+    sequence: 150
+
+  when: 
+    event: EVENT.EVENT.BROWSER.KEYPRESS
+    selection-type: Item(s)
+    item(s): 
+    - P12_SEARCH
+
+  client-side-condition: 
+    type: JavaScript expression
+    javascript-expression: this.browserEvent.which === apex.jQuery.ui.keyCode.ENTER
+
+  execution: 
+    event-scope: Static
+    type: Immediate
+
+  actions: 
+  - # ====== Action: Refresh =====================================
+    id: 434584123345542379
+    identification: 
+      action: Refresh
+
+    affected-elements: 
+      selection-type: Region
+      region: Master Records # 434536630499542113
+
+    execution: 
+      sequence: 10
+      event: Perform Search # 434582365148542378
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+  - # ====== Action: Cancel Event ================================
+    id: 434584643480542379
+    identification: 
+      action: Cancel Event
+
+    execution: 
+      sequence: 30
+      event: Perform Search # 434582365148542378
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+

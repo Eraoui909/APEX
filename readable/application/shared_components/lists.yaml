@@ -1,0 +1,198 @@
+---
+- # ====== List: Navigation Menu ===============================
+  id: 49936933980693197167
+  identification: 
+    name: Navigation Menu
+
+  source: 
+    type: Static Values
+
+  entries: 
+  - # ====== Entry: My Account ===================================
+    id: 434533932213542110
+    label: 
+      label: My Account
+
+    icon: 
+      image/icon-css-classes: fa-briefcase
+
+    layout: 
+      sequence: 50
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 12
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:12:&SESSION.::&DEBUG.::::'
+        page: 12 # My Account
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Password Generator ===========================
+    id: 650121058505574516
+    label: 
+      label: Password Generator
+
+    icon: 
+      image/icon-css-classes: fa-file-o
+
+    layout: 
+      sequence: 60
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 5
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:5:&APP_SESSION.::&DEBUG.:::'
+        page: 5 # Password Generator
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Dashboard ====================================
+    id: 49937432787862197304
+    label: 
+      label: Dashboard
+
+    icon: 
+      image/icon-css-classes: fa-dashboard
+
+    layout: 
+      sequence: 10
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:1:&APP_SESSION.::&DEBUG.:::'
+        page: 1 # Dashboard
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: My Accounts ==================================
+    id: 49937442688607197310
+    label: 
+      label: My Accounts
+
+    icon: 
+      image/icon-css-classes: fa-unlock-alt
+
+    layout: 
+      sequence: 20
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:2:&APP_SESSION.::&DEBUG.:::'
+        page: 2 # My Accounts
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+- # ====== List: Navigation Bar ================================
+  id: 49937419863297197292
+  identification: 
+    name: Navigation Bar
+
+  source: 
+    type: Static Values
+
+  entries: 
+  - # ====== Entry: &APP_USER. ===================================
+    id: 49937534241558197624
+    label: 
+      label: '&APP_USER.'
+
+    icon: 
+      image/icon-css-classes: fa-user
+
+    layout: 
+      sequence: 10
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: '#'
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+      2.: has-username
+
+  - # ====== Entry: --- ==========================================
+    id: 49937534733030197624
+    label: 
+      label: '---'
+
+    layout: 
+      sequence: 20
+      parent-entry: '&APP_USER.' # 49937534241558197624
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: separator
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+    server-side-condition: 
+      type: User is Authenticated (not public)
+
+  - # ====== Entry: Sign Out =====================================
+    id: 49937535169614197624
+    label: 
+      label: Sign Out
+
+    icon: 
+      image/icon-css-classes: fa-sign-out
+
+    layout: 
+      sequence: 30
+      parent-entry: '&APP_USER.' # 49937534241558197624
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: '&LOGOUT_URL.'
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+    server-side-condition: 
+      type: User is Authenticated (not public)
+

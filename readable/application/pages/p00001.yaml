@@ -1,0 +1,616 @@
+---
+# ====== Page: Dashboard =====================================
+id: 1
+identification: 
+  name: Dashboard
+  alias: HOME
+  title: Accounts Admin
+
+appearance: 
+  page-mode: Normal
+  page-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: Accounts ====================================
+  id: 49937433466775197305
+  identification: 
+    title: Accounts
+    type: Chart
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    position: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Standard # 49937037159337197207
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  security: 
+    escape-special-characters: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    id: 49937433848780197305
+    chart: 
+      type: Pie
+
+    data-cursor: 
+      cursor: Automatic
+      behavior: Automatic
+      dim-on-hover: true
+
+    settings: 
+      pie-selection-effect: Highlight
+
+    value: 
+      pie-chart-other-threshold: 0
+      format: Decimal
+      decimal-places: 0
+      format-scaling: Automatic
+
+    animation: 
+      on-display: Automatic
+      on-data-change: Automatic
+
+    tooltip: 
+      show: true
+      show-series-name: true
+      show-value: true
+
+    legend: 
+      show: false
+
+    series: 
+    - # ====== Series: Series 1 ====================================
+      id: 49937434358298197306
+      identification: 
+        name: Series 1
+
+      execution: 
+        sequence: 10
+
+      source: 
+        location: Local Database
+        type: SQL Query
+        sql-query: |
+          select ACCOUNT_NAME, count(ID) value
+          from APP_PM_ACCOUNTS
+          where ID is not null
+          group by ACCOUNT_NAME
+          order by 2 desc
+
+      column-mapping: 
+        label: ACCOUNT_NAME
+        value: VALUE
+
+      label: 
+        show: true
+        position: Automatic
+        display-as: Label
+
+      performance: 
+        maximum-rows-to-process: 20
+
+- # ====== Region: Chart 2 =====================================
+  id: 49937434959077197306
+  identification: 
+    title: Chart 2
+    type: Chart
+
+  layout: 
+    sequence: 20
+    parent-region: No Parent
+    position: BODY
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Standard # 49937037159337197207
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  security: 
+    escape-special-characters: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    id: 49937435393602197306
+    chart: 
+      type: Bar
+
+    appearance: 
+      orientation: Vertical
+      stack: false
+
+    data-cursor: 
+      cursor: Automatic
+      behavior: Automatic
+      dim-on-hover: true
+
+    multi-series-chart-data: 
+      fill-gaps-in-chart-data: true
+      sort-order: Label - Ascending
+      render-gap-as-zero: true
+
+    settings: 
+      zoom-and-scroll: No
+
+    animation: 
+      on-display: Automatic
+      on-data-change: Automatic
+
+    tooltip: 
+      show: true
+      show-series-name: true
+      show-group-name: true
+      show-value: true
+
+    legend: 
+      show: false
+
+    series: 
+    - # ====== Series: Series 1 ====================================
+      id: 49937437041422197307
+      identification: 
+        name: Series 1
+
+      execution: 
+        sequence: 10
+
+      source: 
+        location: Local Database
+        type: SQL Query
+        sql-query: |
+          select 'Series A' label, 30 value from dual
+          union all
+          select 'Series B' label, 20 value from dual
+          union all
+          select 'Series C' label, 34 value from dual
+          union all
+          select 'Series D' label, 6  value from dual
+          union all
+          select 'Series E' label, 10 value from dual
+          order by 1 desc
+
+      column-mapping: 
+        label: LABEL
+        value: VALUE
+
+      appearance: 
+        assigned-to-y2-axis: false
+
+      label: 
+        show: false
+
+      performance: 
+        maximum-rows-to-process: 20
+
+    axes: 
+    - # ====== Axis: x =============================================
+      id: 49937435800569197307
+      identification: 
+        name: x
+        show-axis: true
+
+      value: 
+        format-scaling: Automatic
+        baseline-scaling: Zero
+        scale: Linear
+
+      major-ticks: 
+        show: Automatic
+
+      minor-ticks: 
+
+      tick-label: 
+        show: true
+        rotation: true
+        position: Outside
+
+    - # ====== Axis: y =============================================
+      id: 49937436456667197307
+      identification: 
+        name: y
+        show-axis: true
+
+      value: 
+        format: Decimal
+        decimal-places: 0
+        format-scaling: Automatic
+        baseline-scaling: Zero
+        scale: Linear
+
+      appearance: 
+        position: Automatic
+
+      major-ticks: 
+        show: Automatic
+
+      minor-ticks: 
+
+      tick-label: 
+        show: true
+
+- # ====== Region: Chart 3 =====================================
+  id: 49937437610014197308
+  identification: 
+    title: Chart 3
+    type: Chart
+
+  layout: 
+    sequence: 30
+    parent-region: No Parent
+    position: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Standard # 49937037159337197207
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  security: 
+    escape-special-characters: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    id: 49937438082212197308
+    chart: 
+      type: Line
+
+    appearance: 
+      orientation: Vertical
+      stack: false
+
+    data-cursor: 
+      cursor: Automatic
+      behavior: Automatic
+      dim-on-hover: true
+
+    multi-series-chart-data: 
+      fill-gaps-in-chart-data: true
+      sort-order: Label - Ascending
+      render-gap-as-zero: true
+
+    settings: 
+      zoom-and-scroll: No
+
+    animation: 
+      on-display: Automatic
+      on-data-change: Automatic
+
+    tooltip: 
+      show: true
+      show-series-name: true
+      show-group-name: true
+      show-value: true
+
+    legend: 
+      show: false
+
+    series: 
+    - # ====== Series: Series 1 ====================================
+      id: 49937439785526197309
+      identification: 
+        name: Series 1
+
+      execution: 
+        sequence: 10
+
+      source: 
+        location: Local Database
+        type: SQL Query
+        sql-query: |
+          select 'Series A' label, 30 value from dual
+          union all
+          select 'Series B' label, 20 value from dual
+          union all
+          select 'Series C' label, 34 value from dual
+          union all
+          select 'Series D' label, 6  value from dual
+          union all
+          select 'Series E' label, 10 value from dual
+          order by 1 desc
+
+      column-mapping: 
+        label: LABEL
+        value: VALUE
+
+      appearance: 
+        assigned-to-y2-axis: false
+
+      line: 
+        style: Solid
+        type: Automatic
+
+      marker: 
+        show: Automatic
+        shape: Automatic
+
+      label: 
+        show: false
+
+      performance: 
+        maximum-rows-to-process: 20
+
+    axes: 
+    - # ====== Axis: x =============================================
+      id: 49937438519847197308
+      identification: 
+        name: x
+        show-axis: true
+
+      value: 
+        format-scaling: Automatic
+        baseline-scaling: Zero
+        scale: Linear
+
+      major-ticks: 
+        show: Automatic
+
+      minor-ticks: 
+
+      tick-label: 
+        show: true
+        rotation: true
+        position: Outside
+
+    - # ====== Axis: y =============================================
+      id: 49937439136114197308
+      identification: 
+        name: y
+        show-axis: true
+
+      value: 
+        format: Decimal
+        decimal-places: 0
+        format-scaling: Automatic
+        baseline-scaling: Zero
+        scale: Linear
+
+      appearance: 
+        position: Automatic
+
+      major-ticks: 
+        show: Automatic
+
+      minor-ticks: 
+
+      tick-label: 
+        show: true
+
+- # ====== Region: Chart 4 =====================================
+  id: 49937440394348197309
+  identification: 
+    title: Chart 4
+    type: Chart
+
+  layout: 
+    sequence: 40
+    parent-region: No Parent
+    position: BODY
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Standard # 49937037159337197207
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  security: 
+    escape-special-characters: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    id: 49937440702716197309
+    chart: 
+      type: Pie
+
+    data-cursor: 
+      cursor: Automatic
+      behavior: Automatic
+      dim-on-hover: true
+
+    settings: 
+      pie-selection-effect: Highlight
+
+    value: 
+      pie-chart-other-threshold: 0
+      format: Decimal
+      decimal-places: 0
+      format-scaling: Automatic
+
+    animation: 
+      on-display: Automatic
+      on-data-change: Automatic
+
+    tooltip: 
+      show: true
+      show-series-name: true
+      show-value: true
+
+    legend: 
+      show: false
+
+    series: 
+    - # ====== Series: Series 1 ====================================
+      id: 49937441295278197309
+      identification: 
+        name: Series 1
+
+      execution: 
+        sequence: 10
+
+      source: 
+        location: Local Database
+        type: SQL Query
+        sql-query: |
+          select 'Series A' label, 30 value from dual
+          union all
+          select 'Series B' label, 20 value from dual
+          union all
+          select 'Series C' label, 34 value from dual
+          union all
+          select 'Series D' label, 6  value from dual
+          union all
+          select 'Series E' label, 10 value from dual
+          order by 1 desc
+
+      column-mapping: 
+        label: LABEL
+        value: VALUE
+
+      label: 
+        show: true
+        position: Automatic
+        display-as: Label
+
+      performance: 
+        maximum-rows-to-process: 20
+
+- # ====== Region: Accounts Admin ==============================
+  id: 49937442054326197310
+  identification: 
+    title: Accounts Admin
+    type: Static Content
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    position: REGION_POSITION_01
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Hero # 49937003401164197195
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  image: 
+    file-url: '#APP_FILES#icons/app-icon-512.png'
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+

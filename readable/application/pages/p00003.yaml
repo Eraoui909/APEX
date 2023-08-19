@@ -1,0 +1,1070 @@
+---
+# ====== Page: App Pm Account ================================
+id: 3
+identification: 
+  name: App Pm Account
+  alias: APP-PM-ACCOUNT
+  title: App Pm Account
+
+appearance: 
+  page-mode: Modal Dialog
+  dialog-template: Drawer # 49936934260367197167
+  template-options: 
+  - '#DEFAULT#'
+  - js-dialog-class-t-Drawer--pullOutEnd
+
+dialog: 
+  chained: false
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: Account =====================================
+  id: 49937443588243197376
+  identification: 
+    title: Account
+    type: Form
+
+  source: 
+    location: Local Database
+    type: Table / View
+    table-owner: Parsing Schema
+    table-name: APP_PM_ACCOUNTS
+    include-rowid-column: false
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    position: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes # 49936970198569197183
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    edit: 
+      enabled: true
+      allowed-operations: 
+      - Add Row
+      - Update Row
+      - Delete Row
+      lost-update-type: Row Values
+
+- # ====== Region: Buttons =====================================
+  id: 49937453068355197383
+  identification: 
+    title: Buttons
+    type: Static Content
+
+  layout: 
+    sequence: 20
+    parent-region: No Parent
+    position: REGION_POSITION_03
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Buttons Container # 49936972945668197184
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: Text (escape special characters)
+      show-line-breaks: true
+
+page-items: 
+- # ====== Page Item: P3_MIME_TYPE =============================
+  id: 6737384930250247
+  identification: 
+    name: P3_MIME_TYPE
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 150
+    region: Account # 49937443588243197376
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Account # 49937443588243197376
+    column: MIME_TYPE
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P3_FILENAME ==============================
+  id: 6737454096250248
+  identification: 
+    name: P3_FILENAME
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 160
+    region: Account # 49937443588243197376
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Account # 49937443588243197376
+    column: FILENAME
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P3_ID ====================================
+  id: 49937443825609197377
+  identification: 
+    name: P3_ID
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 10
+    region: Account # 49937443588243197376
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Account # 49937443588243197376
+    column: ID
+    data-type: NUMBER
+    query-only: false
+    primary-key: true
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Checksum Required - Session Level
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P3_ACCOUNT_NAME ==========================
+  id: 49937444229823197377
+  identification: 
+    name: P3_ACCOUNT_NAME
+    type: Text Field
+
+  label: 
+    label: Account Name
+    alignment: Right
+
+  settings: 
+    subtype: Text
+    trim-spaces: None
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 20
+    region: Account # 49937443588243197376
+    position: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Required - Floating # 49937110880142197235
+    template-options: 
+    - '#DEFAULT#'
+    width: 32
+
+  validation: 
+    value-required: true
+    maximum-length: 150
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Account # 49937443588243197376
+    column: ACCOUNT_NAME
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P3_USERNAME ==============================
+  id: 49937444635903197378
+  identification: 
+    name: P3_USERNAME
+    type: Text Field
+
+  label: 
+    label: Username
+    alignment: Right
+
+  settings: 
+    subtype: Text
+    trim-spaces: None
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 30
+    region: Account # 49937443588243197376
+    position: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating # 49937109553589197235
+    template-options: 
+    - '#DEFAULT#'
+    width: 32
+
+  validation: 
+    value-required: false
+    maximum-length: 150
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Account # 49937443588243197376
+    column: USERNAME
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P3_EMAIL =================================
+  id: 49937445053681197378
+  identification: 
+    name: P3_EMAIL
+    type: Text Field
+
+  label: 
+    label: Email
+    alignment: Right
+
+  settings: 
+    subtype: Text
+    trim-spaces: None
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 40
+    region: Account # 49937443588243197376
+    position: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating # 49937109553589197235
+    template-options: 
+    - '#DEFAULT#'
+    width: 32
+
+  validation: 
+    value-required: false
+    maximum-length: 150
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Account # 49937443588243197376
+    column: EMAIL
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P3_PHONE =================================
+  id: 49937445423535197378
+  identification: 
+    name: P3_PHONE
+    type: Number Field
+
+  label: 
+    label: Phone
+    alignment: Right
+
+  settings: 
+    number-alignment: Start
+    virtual-keyboard: Decimal
+
+  layout: 
+    sequence: 50
+    region: Account # 49937443588243197376
+    position: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating # 49937109553589197235
+    template-options: 
+    - '#DEFAULT#'
+    width: 32
+
+  validation: 
+    value-required: false
+    maximum-length: 255
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Account # 49937443588243197376
+    column: PHONE
+    data-type: NUMBER
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P3_PASSWORD ==============================
+  id: 49937445897482197378
+  identification: 
+    name: P3_PASSWORD
+    type: Password
+
+  label: 
+    label: Password
+    alignment: Left
+
+  settings: 
+    submit-when-enter-pressed: true
+
+  layout: 
+    sequence: 60
+    region: Account # 49937443588243197376
+    position: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Required - Floating # 49937110880142197235
+    template-options: 
+    - '#DEFAULT#'
+    width: 32
+
+  validation: 
+    value-required: true
+    maximum-length: 250
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Account # 49937443588243197376
+    column: PASSWORD
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P3_PICTURE ===============================
+  id: 49937446220261197379
+  identification: 
+    name: P3_PICTURE
+    type: File Browse...
+
+  label: 
+    label: Picture
+    alignment: Left
+
+  settings: 
+    display-as: Inline File Browse
+    storage-type: BLOB column specified in Item Source attribute
+    mime-type-column: MIME_TYPE
+    filename-column: FILENAME
+    display-download-link: true
+    content-disposition: Attachment
+
+  layout: 
+    sequence: 90
+    region: Account # 49937443588243197376
+    position: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating # 49937109553589197235
+    template-options: 
+    - '#DEFAULT#'
+    width: 60
+
+  validation: 
+    value-required: false
+    maximum-length: 500
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Account # 49937443588243197376
+    column: PICTURE
+    data-type: BLOB
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Unrestricted
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P3_ROW_VERSION ===========================
+  id: 49937446651128197379
+  identification: 
+    name: P3_ROW_VERSION
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 100
+    region: Account # 49937443588243197376
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Account # 49937443588243197376
+    column: ROW_VERSION
+    data-type: NUMBER
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P3_CREATED ===============================
+  id: 49937447061186197379
+  identification: 
+    name: P3_CREATED
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 110
+    region: Account # 49937443588243197376
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Account # 49937443588243197376
+    column: CREATED
+    data-type: TIMESTAMP WITH LOCAL TIME ZONE
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P3_CREATED_BY ============================
+  id: 49937447844610197380
+  identification: 
+    name: P3_CREATED_BY
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 120
+    region: Account # 49937443588243197376
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Account # 49937443588243197376
+    column: CREATED_BY
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P3_UPDATED ===============================
+  id: 49937448297279197380
+  identification: 
+    name: P3_UPDATED
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 130
+    region: Account # 49937443588243197376
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Account # 49937443588243197376
+    column: UPDATED
+    data-type: TIMESTAMP WITH LOCAL TIME ZONE
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P3_UPDATED_BY ============================
+  id: 49937449034144197380
+  identification: 
+    name: P3_UPDATED_BY
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 140
+    region: Account # 49937443588243197376
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Account # 49937443588243197376
+    column: UPDATED_BY
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+buttons: 
+- # ====== Button: GENERATE_PASSWORD ===========================
+  id: 433341627452492878
+  identification: 
+    button-name: GENERATE_PASSWORD
+    label: Generate Password
+
+  layout: 
+    sequence: 70
+    region: Account # 49937443588243197376
+    position: BODY
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: false
+    column-span: Automatic
+    alignment: Left center
+
+  appearance: 
+    button-template: Text # 49937312004423197236
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:8:&SESSION.::&DEBUG.:::'
+      page: 8 # Password Generator Pop Up
+
+    warn-on-unsaved-changes: Do Not Check
+
+- # ====== Button: CANCEL ======================================
+  id: 49937453419301197383
+  identification: 
+    button-name: CANCEL
+    label: Cancel
+
+  layout: 
+    sequence: 10
+    region: Buttons # 49937453068355197383
+    position: CLOSE
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text # 49937312004423197236
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Defined by Dynamic Action
+    execute-validations: true
+
+- # ====== Button: DELETE ======================================
+  id: 49937454882780197384
+  identification: 
+    button-name: DELETE
+    label: Delete
+
+  layout: 
+    sequence: 20
+    region: Buttons # 49937453068355197383
+    position: DELETE
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text # 49937312004423197236
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--danger
+    - t-Button--simple
+
+  behavior: 
+    action: Submit Page
+    execute-validations: false
+    warn-on-unsaved-changes: Do Not Check
+    database-action: SQL DELETE action
+
+  confirmation: 
+    message: '&APP_TEXT$DELETE_MSG!RAW.'
+    style: Danger
+
+  server-side-condition: 
+    type: Item is NOT NULL
+    item: P3_ID
+
+- # ====== Button: SAVE ========================================
+  id: 49937455290734197384
+  identification: 
+    button-name: SAVE
+    label: Apply Changes
+
+  layout: 
+    sequence: 30
+    region: Buttons # 49937453068355197383
+    position: NEXT
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text # 49937312004423197236
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Submit Page
+    execute-validations: true
+    warn-on-unsaved-changes: Do Not Check
+    database-action: SQL UPDATE action
+
+  server-side-condition: 
+    type: Item is NOT NULL
+    item: P3_ID
+
+- # ====== Button: CREATE ======================================
+  id: 49937455612966197384
+  identification: 
+    button-name: CREATE
+    label: Create
+
+  layout: 
+    sequence: 40
+    region: Buttons # 49937453068355197383
+    position: NEXT
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text # 49937312004423197236
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Submit Page
+    execute-validations: true
+    warn-on-unsaved-changes: Do Not Check
+    database-action: SQL INSERT action
+
+  server-side-condition: 
+    type: Item is NULL
+    item: P3_ID
+
+dynamic-actions: 
+- # ====== Dynamic Action: Cancel Dialog =======================
+  id: 49937453559542197383
+  identification: 
+    name: Cancel Dialog
+
+  execution: 
+    sequence: 10
+
+  when: 
+    event: EVENT.EVENT.BROWSER.CLICK
+    selection-type: Button
+    button: CANCEL # 49937453419301197383
+
+  execution: 
+    event-scope: Static
+    type: Immediate
+
+  actions: 
+  - # ====== Action: Cancel Dialog ===============================
+    id: 49937454339497197383
+    identification: 
+      action: Cancel Dialog
+
+    execution: 
+      sequence: 10
+      event: Cancel Dialog # 49937453559542197383
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+validations: 
+- # ====== Validation: P3_CREATED must be timestamp ============
+  id: 49937447588602197380
+  identification: 
+    name: P3_CREATED must be timestamp
+
+  execution: 
+    sequence: 80
+
+  validation: 
+    type: Item is a valid timestamp
+    item: P3_CREATED
+    always-execute: false
+
+  error: 
+    error-message: '#LABEL# must be a valid timestamp.'
+    display-location: Inline with Field and in Notification
+    associated-item: P3_CREATED # 49937447061186197379
+
+- # ====== Validation: P3_UPDATED must be timestamp ============
+  id: 49937448704062197380
+  identification: 
+    name: P3_UPDATED must be timestamp
+
+  execution: 
+    sequence: 100
+
+  validation: 
+    type: Item is a valid timestamp
+    item: P3_UPDATED
+    always-execute: false
+
+  error: 
+    error-message: '#LABEL# must be a valid timestamp.'
+    display-location: Inline with Field and in Notification
+    associated-item: P3_UPDATED # 49937448297279197380
+
+processes: 
+- # ====== Process: Initialize form App Pm Account =============
+  id: 49937456040533197384
+  identification: 
+    name: Initialize form App Pm Account
+    type: Form - Initialization
+    execution-chain: None
+    form-region: Account # 49937443588243197376
+
+  execution: 
+    sequence: 10
+    point: Before Header
+    run-process: Once Per Page Visit (default)
+
+- # ====== Process: Process form App Pm Account ================
+  id: 49937456450358197385
+  identification: 
+    name: Process form App Pm Account
+    type: Form - Automatic Row Processing (DML)
+    execution-chain: None
+    form-region: Account # 49937443588243197376
+
+  settings: 
+    target-type: Region Source
+    prevent-lost-updates: true
+    lock-row: Yes
+    return-primary-key(s)-after-insert: true
+
+  execution: 
+    sequence: 10
+    point: Processing
+    run-process: Once Per Page Visit (default)
+
+  error: 
+    display-location: Inline in Notification
+
+- # ====== Process: Close Dialog ===============================
+  id: 49937456812180197385
+  identification: 
+    name: Close Dialog
+    type: Close Dialog
+    execution-chain: None
+
+  execution: 
+    sequence: 50
+    point: Processing
+    run-process: Once Per Page Visit (default)
+
+  error: 
+    display-location: Inline in Notification
+
+  server-side-condition: 
+    when-button-pressed: SAVE # 49937455290734197384
+
+branches: 
+- # ====== Branch: Redirect to new =============================
+  id: 49937457228678197385
+  identification: 
+    name: Redirect to new
+
+  execution: 
+    sequence: 10
+    point: After Processing
+
+  behavior: 
+    type: Page or URL (Redirect)
+    target: 
+      url: 'f?p=&APP_ID.:2:&APP_SESSION.::&DEBUG.:RP:P2_ID:&P3_ID.&success_msg=#SUCCESS_MSG#'
+      page: 2 # My Accounts
+      clear-cache: RP
+      values: 
+        p2_id: '&P3_ID.'
+
+  server-side-condition: 
+    when-button-pressed: CREATE # 49937455612966197384
+
+- # ====== Branch: Redirect to all =============================
+  id: 49937457639497197386
+  identification: 
+    name: Redirect to all
+
+  execution: 
+    sequence: 20
+    point: After Processing
+
+  behavior: 
+    type: Page or URL (Redirect)
+    target: 
+      url: 'f?p=&APP_ID.:2:&APP_SESSION.::&DEBUG.:RP,2::&success_msg=#SUCCESS_MSG#'
+      page: 2 # My Accounts
+      clear-cache: RP,2
+
+  server-side-condition: 
+    when-button-pressed: DELETE # 49937454882780197384
+

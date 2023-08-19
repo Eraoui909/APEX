@@ -1,0 +1,809 @@
+---
+# ====== Page: App Pm Other Attributes =======================
+id: 14
+identification: 
+  name: App Pm Other Attributes
+  alias: APP-PM-OTHER-ATTRIBUTES
+  title: App Pm Other Attributes
+
+appearance: 
+  page-mode: Modal Dialog
+  dialog-template: Drawer # 49936934260367197167
+  template-options: 
+  - '#DEFAULT#'
+  - js-dialog-class-t-Drawer--pullOutEnd
+
+dialog: 
+  chained: false
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: App Pm Other Attributes =====================
+  id: 434568638700542369
+  identification: 
+    title: App Pm Other Attributes
+    type: Form
+
+  source: 
+    location: Local Database
+    type: Table / View
+    table-owner: Parsing Schema
+    table-name: APP_PM_OTHER_ATTRIBUTES
+    include-rowid-column: true
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    position: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes # 49936970198569197183
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    edit: 
+      enabled: true
+      allowed-operations: 
+      - Add Row
+      - Update Row
+      - Delete Row
+      lost-update-type: Row Values
+
+- # ====== Region: Buttons =====================================
+  id: 434576758099542375
+  identification: 
+    title: Buttons
+    type: Static Content
+
+  layout: 
+    sequence: 20
+    parent-region: No Parent
+    position: REGION_POSITION_03
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Buttons Container # 49936972945668197184
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: Text (escape special characters)
+      show-line-breaks: true
+
+page-items: 
+- # ====== Page Item: P14_ROWID ================================
+  id: 434568968770542370
+  identification: 
+    name: P14_ROWID
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 10
+    region: App Pm Other Attributes # 434568638700542369
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: App Pm Other Attributes # 434568638700542369
+    column: ROWID
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: true
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Checksum Required - Session Level
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P14_ID ===================================
+  id: 434569327756542370
+  identification: 
+    name: P14_ID
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 20
+    region: App Pm Other Attributes # 434568638700542369
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: App Pm Other Attributes # 434568638700542369
+    column: ID
+    data-type: NUMBER
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P14_ACCOUNT_ID ===========================
+  id: 434569801983542370
+  identification: 
+    name: P14_ACCOUNT_ID
+    type: Select List
+
+  label: 
+    label: Account Id
+    alignment: Left
+
+  settings: 
+    page-action-on-selection: None
+    allow-multi-selection: false
+
+  layout: 
+    sequence: 30
+    region: App Pm Other Attributes # 434568638700542369
+    position: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Required - Floating # 49937110880142197235
+    template-options: 
+    - '#DEFAULT#'
+    height: 1
+
+  validation: 
+    value-required: true
+
+  list-of-values: 
+    type: SQL Query
+    sql-query: |
+      select account_name, id
+      from app_pm_accounts;
+      
+    display-extra-values: false
+    display-null-value: false
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: App Pm Other Attributes # 434568638700542369
+    column: ACCOUNT_ID
+    data-type: NUMBER
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P14_ATTRIBUTE_NAME =======================
+  id: 434570130602542371
+  identification: 
+    name: P14_ATTRIBUTE_NAME
+    type: Text Field
+
+  label: 
+    label: Attribute Name
+    alignment: Right
+
+  settings: 
+    subtype: Text
+    trim-spaces: None
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 40
+    region: App Pm Other Attributes # 434568638700542369
+    position: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Required - Floating # 49937110880142197235
+    template-options: 
+    - '#DEFAULT#'
+    width: 32
+
+  validation: 
+    value-required: true
+    maximum-length: 100
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: App Pm Other Attributes # 434568638700542369
+    column: ATTRIBUTE_NAME
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P14_ATTRIBUTE_VALUE ======================
+  id: 434570515921542371
+  identification: 
+    name: P14_ATTRIBUTE_VALUE
+    type: Text Field
+
+  label: 
+    label: Attribute Value
+    alignment: Right
+
+  settings: 
+    subtype: Text
+    trim-spaces: None
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 50
+    region: App Pm Other Attributes # 434568638700542369
+    position: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Required - Floating # 49937110880142197235
+    template-options: 
+    - '#DEFAULT#'
+    width: 32
+
+  validation: 
+    value-required: true
+    maximum-length: 200
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: App Pm Other Attributes # 434568638700542369
+    column: ATTRIBUTE_VALUE
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P14_ROW_VERSION ==========================
+  id: 434570965402542371
+  identification: 
+    name: P14_ROW_VERSION
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 60
+    region: App Pm Other Attributes # 434568638700542369
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: App Pm Other Attributes # 434568638700542369
+    column: ROW_VERSION
+    data-type: NUMBER
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P14_CREATED ==============================
+  id: 434571346074542371
+  identification: 
+    name: P14_CREATED
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 70
+    region: App Pm Other Attributes # 434568638700542369
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: App Pm Other Attributes # 434568638700542369
+    column: CREATED
+    data-type: TIMESTAMP WITH LOCAL TIME ZONE
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P14_CREATED_BY ===========================
+  id: 434572129272542372
+  identification: 
+    name: P14_CREATED_BY
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 80
+    region: App Pm Other Attributes # 434568638700542369
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: App Pm Other Attributes # 434568638700542369
+    column: CREATED_BY
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P14_UPDATED ==============================
+  id: 434572551558542372
+  identification: 
+    name: P14_UPDATED
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 90
+    region: App Pm Other Attributes # 434568638700542369
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: App Pm Other Attributes # 434568638700542369
+    column: UPDATED
+    data-type: TIMESTAMP WITH LOCAL TIME ZONE
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P14_UPDATED_BY ===========================
+  id: 434573316830542373
+  identification: 
+    name: P14_UPDATED_BY
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 100
+    region: App Pm Other Attributes # 434568638700542369
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: App Pm Other Attributes # 434568638700542369
+    column: UPDATED_BY
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+buttons: 
+- # ====== Button: CANCEL ======================================
+  id: 434577116799542375
+  identification: 
+    button-name: CANCEL
+    label: Cancel
+
+  layout: 
+    sequence: 10
+    region: Buttons # 434576758099542375
+    position: CLOSE
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text # 49937312004423197236
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Defined by Dynamic Action
+    execute-validations: true
+
+- # ====== Button: DELETE ======================================
+  id: 434578534709542376
+  identification: 
+    button-name: DELETE
+    label: Delete
+
+  layout: 
+    sequence: 20
+    region: Buttons # 434576758099542375
+    position: DELETE
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text # 49937312004423197236
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--danger
+    - t-Button--simple
+
+  behavior: 
+    action: Submit Page
+    execute-validations: false
+    warn-on-unsaved-changes: Do Not Check
+    database-action: SQL DELETE action
+
+  confirmation: 
+    message: '&APP_TEXT$DELETE_MSG!RAW.'
+    style: Danger
+
+  server-side-condition: 
+    type: Item is NOT NULL
+    item: P14_ROWID
+
+- # ====== Button: SAVE ========================================
+  id: 434578990286542376
+  identification: 
+    button-name: SAVE
+    label: Apply Changes
+
+  layout: 
+    sequence: 30
+    region: Buttons # 434576758099542375
+    position: NEXT
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text # 49937312004423197236
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Submit Page
+    execute-validations: true
+    warn-on-unsaved-changes: Do Not Check
+    database-action: SQL UPDATE action
+
+  server-side-condition: 
+    type: Item is NOT NULL
+    item: P14_ROWID
+
+- # ====== Button: CREATE ======================================
+  id: 434579362526542376
+  identification: 
+    button-name: CREATE
+    label: Create
+
+  layout: 
+    sequence: 40
+    region: Buttons # 434576758099542375
+    position: NEXT
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text # 49937312004423197236
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Submit Page
+    execute-validations: true
+    warn-on-unsaved-changes: Do Not Check
+    database-action: SQL INSERT action
+
+  server-side-condition: 
+    type: Item is NULL
+    item: P14_ROWID
+
+dynamic-actions: 
+- # ====== Dynamic Action: Cancel Dialog =======================
+  id: 434577258227542375
+  identification: 
+    name: Cancel Dialog
+
+  execution: 
+    sequence: 10
+
+  when: 
+    event: EVENT.EVENT.BROWSER.CLICK
+    selection-type: Button
+    button: CANCEL # 434577116799542375
+
+  execution: 
+    event-scope: Static
+    type: Immediate
+
+  actions: 
+  - # ====== Action: Cancel Dialog ===============================
+    id: 434578087541542375
+    identification: 
+      action: Cancel Dialog
+
+    execution: 
+      sequence: 10
+      event: Cancel Dialog # 434577258227542375
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+validations: 
+- # ====== Validation: P14_CREATED must be timestamp ===========
+  id: 434571903112542372
+  identification: 
+    name: P14_CREATED must be timestamp
+
+  execution: 
+    sequence: 60
+
+  validation: 
+    type: Item is a valid timestamp
+    item: P14_CREATED
+    always-execute: false
+
+  error: 
+    error-message: '#LABEL# must be a valid timestamp.'
+    display-location: Inline with Field and in Notification
+    associated-item: P14_CREATED # 434571346074542371
+
+- # ====== Validation: P14_UPDATED must be timestamp ===========
+  id: 434573059903542372
+  identification: 
+    name: P14_UPDATED must be timestamp
+
+  execution: 
+    sequence: 80
+
+  validation: 
+    type: Item is a valid timestamp
+    item: P14_UPDATED
+    always-execute: false
+
+  error: 
+    error-message: '#LABEL# must be a valid timestamp.'
+    display-location: Inline with Field and in Notification
+    associated-item: P14_UPDATED # 434572551558542372
+
+processes: 
+- # ====== Process: Initialize form App Pm Other Attributes ====
+  id: 434579781116542376
+  identification: 
+    name: Initialize form App Pm Other Attributes
+    type: Form - Initialization
+    execution-chain: None
+    form-region: App Pm Other Attributes # 434568638700542369
+
+  execution: 
+    sequence: 10
+    point: Before Header
+    run-process: Once Per Page Visit (default)
+
+- # ====== Process: Process form App Pm Other Attributes =======
+  id: 434580140618542376
+  identification: 
+    name: Process form App Pm Other Attributes
+    type: Form - Automatic Row Processing (DML)
+    execution-chain: None
+    form-region: App Pm Other Attributes # 434568638700542369
+
+  settings: 
+    target-type: Region Source
+    prevent-lost-updates: true
+    lock-row: Yes
+    return-primary-key(s)-after-insert: true
+
+  execution: 
+    sequence: 10
+    point: Processing
+    run-process: Once Per Page Visit (default)
+
+  error: 
+    display-location: Inline in Notification
+
+- # ====== Process: Close Dialog ===============================
+  id: 434580528980542377
+  identification: 
+    name: Close Dialog
+    type: Close Dialog
+    execution-chain: None
+
+  settings: 
+    items-to-return-: 
+    - P14_ROWID
+    - REQUEST
+
+  execution: 
+    sequence: 50
+    point: Processing
+    run-process: Once Per Page Visit (default)
+
+  error: 
+    display-location: Inline in Notification
+
+  server-side-condition: 
+    type: Request is contained in Value
+    value: CREATE,SAVE,DELETE
+

@@ -1,0 +1,773 @@
+---
+# ====== Page: App Pm Other Attribute ========================
+id: 4
+identification: 
+  name: App Pm Other Attribute
+  alias: APP-PM-OTHER-ATTRIBUTE
+  title: App Pm Other Attribute
+
+appearance: 
+  page-mode: Modal Dialog
+  dialog-template: Drawer # 49936934260367197167
+  template-options: 
+  - '#DEFAULT#'
+  - js-dialog-class-t-Drawer--pullOutEnd
+
+dialog: 
+  chained: false
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: App Pm Other Attribute ======================
+  id: 49937489629821197590
+  identification: 
+    title: App Pm Other Attribute
+    type: Form
+
+  source: 
+    location: Local Database
+    type: Table / View
+    table-owner: Parsing Schema
+    table-name: APP_PM_OTHER_ATTRIBUTES
+    include-rowid-column: false
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    position: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes # 49936970198569197183
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    edit: 
+      enabled: true
+      allowed-operations: 
+      - Add Row
+      - Update Row
+      - Delete Row
+      lost-update-type: Row Values
+
+- # ====== Region: Buttons =====================================
+  id: 49937497491709197596
+  identification: 
+    title: Buttons
+    type: Static Content
+
+  layout: 
+    sequence: 20
+    parent-region: No Parent
+    position: REGION_POSITION_03
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Buttons Container # 49936972945668197184
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: Text (escape special characters)
+      show-line-breaks: true
+
+page-items: 
+- # ====== Page Item: P4_ID ====================================
+  id: 49937490070366197590
+  identification: 
+    name: P4_ID
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 10
+    region: App Pm Other Attribute # 49937489629821197590
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: App Pm Other Attribute # 49937489629821197590
+    column: ID
+    data-type: NUMBER
+    query-only: false
+    primary-key: true
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Checksum Required - Session Level
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P4_ACCOUNT_ID ============================
+  id: 49937490415438197591
+  identification: 
+    name: P4_ACCOUNT_ID
+    type: Select List
+
+  label: 
+    label: Account
+    alignment: Right
+
+  settings: 
+    page-action-on-selection: None
+    allow-multi-selection: false
+
+  layout: 
+    sequence: 20
+    region: App Pm Other Attribute # 49937489629821197590
+    position: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Required - Floating # 49937110880142197235
+    template-options: 
+    - '#DEFAULT#'
+    height: 1
+
+  validation: 
+    value-required: true
+
+  list-of-values: 
+    type: Shared Component
+    list-of-values: APP_PM_ACCOUNTS.ACCOUNT_NAME # 49937490534000197591
+    display-extra-values: true
+    display-null-value: true
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: App Pm Other Attribute # 49937489629821197590
+    column: ACCOUNT_ID
+    data-type: NUMBER
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P4_ATTRIBUTE_NAME ========================
+  id: 49937491168587197592
+  identification: 
+    name: P4_ATTRIBUTE_NAME
+    type: Text Field
+
+  label: 
+    label: Attribute Name
+    alignment: Right
+
+  settings: 
+    subtype: Text
+    trim-spaces: None
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 30
+    region: App Pm Other Attribute # 49937489629821197590
+    position: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Required - Floating # 49937110880142197235
+    template-options: 
+    - '#DEFAULT#'
+    width: 32
+
+  validation: 
+    value-required: true
+    maximum-length: 100
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: App Pm Other Attribute # 49937489629821197590
+    column: ATTRIBUTE_NAME
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P4_ATTRIBUTE_VALUE =======================
+  id: 49937491560547197592
+  identification: 
+    name: P4_ATTRIBUTE_VALUE
+    type: Text Field
+
+  label: 
+    label: Attribute Value
+    alignment: Right
+
+  settings: 
+    subtype: Text
+    trim-spaces: None
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 40
+    region: App Pm Other Attribute # 49937489629821197590
+    position: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Required - Floating # 49937110880142197235
+    template-options: 
+    - '#DEFAULT#'
+    width: 32
+
+  validation: 
+    value-required: true
+    maximum-length: 200
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: App Pm Other Attribute # 49937489629821197590
+    column: ATTRIBUTE_VALUE
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P4_ROW_VERSION ===========================
+  id: 49937491919302197592
+  identification: 
+    name: P4_ROW_VERSION
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 50
+    region: App Pm Other Attribute # 49937489629821197590
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: App Pm Other Attribute # 49937489629821197590
+    column: ROW_VERSION
+    data-type: NUMBER
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P4_CREATED ===============================
+  id: 49937492369320197593
+  identification: 
+    name: P4_CREATED
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 60
+    region: App Pm Other Attribute # 49937489629821197590
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: App Pm Other Attribute # 49937489629821197590
+    column: CREATED
+    data-type: TIMESTAMP WITH LOCAL TIME ZONE
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P4_CREATED_BY ============================
+  id: 49937493110398197594
+  identification: 
+    name: P4_CREATED_BY
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 70
+    region: App Pm Other Attribute # 49937489629821197590
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: App Pm Other Attribute # 49937489629821197590
+    column: CREATED_BY
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P4_UPDATED ===============================
+  id: 49937493518791197594
+  identification: 
+    name: P4_UPDATED
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 80
+    region: App Pm Other Attribute # 49937489629821197590
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: App Pm Other Attribute # 49937489629821197590
+    column: UPDATED
+    data-type: TIMESTAMP WITH LOCAL TIME ZONE
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P4_UPDATED_BY ============================
+  id: 49937494330698197594
+  identification: 
+    name: P4_UPDATED_BY
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 90
+    region: App Pm Other Attribute # 49937489629821197590
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: App Pm Other Attribute # 49937489629821197590
+    column: UPDATED_BY
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+buttons: 
+- # ====== Button: CANCEL ======================================
+  id: 49937497845416197597
+  identification: 
+    button-name: CANCEL
+    label: Cancel
+
+  layout: 
+    sequence: 10
+    region: Buttons # 49937497491709197596
+    position: CLOSE
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text # 49937312004423197236
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Defined by Dynamic Action
+    execute-validations: true
+
+- # ====== Button: DELETE ======================================
+  id: 49937499288309197598
+  identification: 
+    button-name: DELETE
+    label: Delete
+
+  layout: 
+    sequence: 20
+    region: Buttons # 49937497491709197596
+    position: DELETE
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text # 49937312004423197236
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--danger
+    - t-Button--simple
+
+  behavior: 
+    action: Submit Page
+    execute-validations: false
+    warn-on-unsaved-changes: Do Not Check
+    database-action: SQL DELETE action
+
+  confirmation: 
+    message: '&APP_TEXT$DELETE_MSG!RAW.'
+    style: Danger
+
+  server-side-condition: 
+    type: Item is NOT NULL
+    item: P4_ID
+
+- # ====== Button: SAVE ========================================
+  id: 49937499695665197598
+  identification: 
+    button-name: SAVE
+    label: Apply Changes
+
+  layout: 
+    sequence: 30
+    region: Buttons # 49937497491709197596
+    position: NEXT
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text # 49937312004423197236
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Submit Page
+    execute-validations: true
+    warn-on-unsaved-changes: Do Not Check
+    database-action: SQL UPDATE action
+
+  server-side-condition: 
+    type: Item is NOT NULL
+    item: P4_ID
+
+- # ====== Button: CREATE ======================================
+  id: 49937500086279197598
+  identification: 
+    button-name: CREATE
+    label: Create
+
+  layout: 
+    sequence: 40
+    region: Buttons # 49937497491709197596
+    position: NEXT
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text # 49937312004423197236
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Submit Page
+    execute-validations: true
+    warn-on-unsaved-changes: Do Not Check
+    database-action: SQL INSERT action
+
+  server-side-condition: 
+    type: Item is NULL
+    item: P4_ID
+
+dynamic-actions: 
+- # ====== Dynamic Action: Cancel Dialog =======================
+  id: 49937497944050197597
+  identification: 
+    name: Cancel Dialog
+
+  execution: 
+    sequence: 10
+
+  when: 
+    event: EVENT.EVENT.BROWSER.CLICK
+    selection-type: Button
+    button: CANCEL # 49937497845416197597
+
+  execution: 
+    event-scope: Static
+    type: Immediate
+
+  actions: 
+  - # ====== Action: Cancel Dialog ===============================
+    id: 49937498796909197597
+    identification: 
+      action: Cancel Dialog
+
+    execution: 
+      sequence: 10
+      event: Cancel Dialog # 49937497944050197597
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+validations: 
+- # ====== Validation: P4_CREATED must be timestamp ============
+  id: 49937492892637197593
+  identification: 
+    name: P4_CREATED must be timestamp
+
+  execution: 
+    sequence: 50
+
+  validation: 
+    type: Item is a valid timestamp
+    item: P4_CREATED
+    always-execute: false
+
+  error: 
+    error-message: '#LABEL# must be a valid timestamp.'
+    display-location: Inline with Field and in Notification
+    associated-item: P4_CREATED # 49937492369320197593
+
+- # ====== Validation: P4_UPDATED must be timestamp ============
+  id: 49937494018928197594
+  identification: 
+    name: P4_UPDATED must be timestamp
+
+  execution: 
+    sequence: 70
+
+  validation: 
+    type: Item is a valid timestamp
+    item: P4_UPDATED
+    always-execute: false
+
+  error: 
+    error-message: '#LABEL# must be a valid timestamp.'
+    display-location: Inline with Field and in Notification
+    associated-item: P4_UPDATED # 49937493518791197594
+
+processes: 
+- # ====== Process: Initialize form App Pm Other Attribute =====
+  id: 49937500412678197598
+  identification: 
+    name: Initialize form App Pm Other Attribute
+    type: Form - Initialization
+    execution-chain: None
+    form-region: App Pm Other Attribute # 49937489629821197590
+
+  execution: 
+    sequence: 10
+    point: Before Header
+    run-process: Once Per Page Visit (default)
+
+- # ====== Process: Process form App Pm Other Attribute ========
+  id: 49937500887349197599
+  identification: 
+    name: Process form App Pm Other Attribute
+    type: Form - Automatic Row Processing (DML)
+    execution-chain: None
+    form-region: App Pm Other Attribute # 49937489629821197590
+
+  settings: 
+    target-type: Region Source
+    prevent-lost-updates: true
+    lock-row: Yes
+    return-primary-key(s)-after-insert: true
+
+  execution: 
+    sequence: 10
+    point: Processing
+    run-process: Once Per Page Visit (default)
+
+  error: 
+    display-location: Inline in Notification
+
+- # ====== Process: Close Dialog ===============================
+  id: 49937501257726197599
+  identification: 
+    name: Close Dialog
+    type: Close Dialog
+    execution-chain: None
+
+  settings: 
+    items-to-return-: 
+    - P4_ID
+    - REQUEST
+
+  execution: 
+    sequence: 50
+    point: Processing
+    run-process: Once Per Page Visit (default)
+
+  error: 
+    display-location: Inline in Notification
+
+  server-side-condition: 
+    type: Request is contained in Value
+    value: CREATE,SAVE,DELETE
+

@@ -1,0 +1,18 @@
+---
+- # ====== List of Values: APP_PM_ACCOUNTS.ACCOUNT_NAME ========
+  id: 49937490534000197591
+  identification: 
+    name: APP_PM_ACCOUNTS.ACCOUNT_NAME
+
+  source: 
+    location: Local Database
+    type: Table / View
+    table-owner: Parsing Schema
+    table-name: APP_PM_ACCOUNTS
+
+  column-mapping: 
+    return: ID
+    display: ACCOUNT_NAME
+    default-sort: ACCOUNT_NAME
+    sort-direction: Ascending (Nulls Last)
+

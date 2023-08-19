@@ -1,0 +1,49 @@
+---
+- # ====== Breadcrumb: Breadcrumb ==============================
+  id: 49936933414415197166
+  identification: 
+    name: Breadcrumb
+
+  entries: 
+  - # ====== Entry: My Account ===================================
+    id: 434534826700542111
+    identification: 
+      name: My Account
+      page-number: 12
+
+    execution: 
+      sequence: 10
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:12:&APP_SESSION.::&DEBUG.:::'
+        page: 12 # My Account
+
+  - # ====== Entry: Password Generator ===========================
+    id: 650121907709574517
+    identification: 
+      name: Password Generator
+      page-number: 5
+
+    execution: 
+      sequence: 10
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:5:&APP_SESSION.::&DEBUG.:::'
+        page: 5 # Password Generator
+
+  - # ====== Entry: Dashboard ====================================
+    id: 49936933682306197166
+    identification: 
+      name: Dashboard
+      page-number: 1
+
+    execution: 
+      sequence: 10
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:1:&APP_SESSION.::&DEBUG.:::'
+        page: 1 # Dashboard
+

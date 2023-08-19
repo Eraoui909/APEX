@@ -1,0 +1,198 @@
+prompt --application/pages/page_00005
+begin
+--   Manifest
+--     PAGE: 00005
+--   Manifest End
+wwv_flow_imp.component_begin (
+ p_version_yyyy_mm_dd=>'2023.04.28'
+,p_release=>'23.1.3'
+,p_default_workspace_id=>45415934497209978153
+,p_default_application_id=>250191
+,p_default_id_offset=>49943868195930435456
+,p_default_owner=>'WKSP_PASSMASTER'
+);
+wwv_flow_imp_page.create_page(
+ p_id=>5
+,p_name=>'Password Generator'
+,p_alias=>'PASSWORD-GENERATOR'
+,p_step_title=>'Password Generator'
+,p_autocomplete_on_off=>'OFF'
+,p_page_template_options=>'#DEFAULT#'
+,p_protection_level=>'C'
+,p_page_component_map=>'17'
+,p_last_updated_by=>'HAMZAERAOUI2000@GMAIL.COM'
+,p_last_upd_yyyymmddhh24miss=>'20230816140215'
+);
+wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(433340199802492863)
+,p_plug_name=>'Container'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_imp.id(49936970198569197183)
+,p_plug_display_sequence=>10
+,p_attribute_01=>'N'
+,p_attribute_02=>'HTML'
+);
+wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(650121543472574517)
+,p_plug_name=>'Breadcrumb'
+,p_region_template_options=>'#DEFAULT#:t-BreadcrumbRegion--useBreadcrumbTitle'
+,p_component_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_imp.id(49937050198729197212)
+,p_plug_display_sequence=>10
+,p_plug_display_point=>'REGION_POSITION_01'
+,p_menu_id=>wwv_flow_imp.id(49936933414415197166)
+,p_plug_source_type=>'NATIVE_BREADCRUMB'
+,p_menu_template_id=>wwv_flow_imp.id(49937313668435197237)
+);
+wwv_flow_imp_page.create_page_button(
+ p_id=>wwv_flow_imp.id(433340572485492867)
+,p_button_sequence=>40
+,p_button_plug_id=>wwv_flow_imp.id(433340199802492863)
+,p_button_name=>'Generate'
+,p_button_action=>'DEFINED_BY_DA'
+,p_button_template_options=>'#DEFAULT#:t-Button--iconLeft'
+,p_button_template_id=>wwv_flow_imp.id(49937312108330197236)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Generate'
+,p_warn_on_unsaved_changes=>null
+,p_icon_css_classes=>'fa-gear'
+,p_grid_new_row=>'Y'
+,p_grid_column_span=>2
+);
+wwv_flow_imp_page.create_page_button(
+ p_id=>wwv_flow_imp.id(433341289992492874)
+,p_button_sequence=>50
+,p_button_plug_id=>wwv_flow_imp.id(433340199802492863)
+,p_button_name=>'Copy'
+,p_button_action=>'DEFINED_BY_DA'
+,p_button_template_options=>'#DEFAULT#:t-Button--success:t-Button--iconLeft:t-Button--hoverIconPush'
+,p_button_template_id=>wwv_flow_imp.id(49937312108330197236)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Copy'
+,p_warn_on_unsaved_changes=>null
+,p_icon_css_classes=>'fa-copy'
+,p_grid_new_row=>'N'
+,p_grid_new_column=>'Y'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(433340419367492866)
+,p_name=>'P5_PASSWORD'
+,p_item_sequence=>10
+,p_item_plug_id=>wwv_flow_imp.id(433340199802492863)
+,p_prompt=>'Password'
+,p_display_as=>'NATIVE_PASSWORD'
+,p_cSize=>30
+,p_field_template=>wwv_flow_imp.id(49937109553589197235)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_01=>'Y'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(433340914989492871)
+,p_name=>'P5_LENGTH'
+,p_item_sequence=>30
+,p_item_plug_id=>wwv_flow_imp.id(433340199802492863)
+,p_item_default=>'20'
+,p_prompt=>'Length'
+,p_display_as=>'NATIVE_TEXT_FIELD'
+,p_cSize=>10
+,p_begin_on_new_line=>'N'
+,p_colspan=>2
+,p_field_template=>wwv_flow_imp.id(49937109553589197235)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_01=>'N'
+,p_attribute_02=>'N'
+,p_attribute_04=>'TEXT'
+,p_attribute_05=>'BOTH'
+);
+wwv_flow_imp_page.create_page_validation(
+ p_id=>wwv_flow_imp.id(433341004601492872)
+,p_validation_name=>'Validate the length'
+,p_validation_sequence=>10
+,p_validation=>'P5_LENGTH'
+,p_validation_type=>'ITEM_IS_NUMERIC'
+,p_error_message=>'The length should be a number'
+,p_always_execute=>'Y'
+,p_when_button_pressed=>wwv_flow_imp.id(433340572485492867)
+,p_associated_item=>wwv_flow_imp.id(433340914989492871)
+,p_error_display_location=>'INLINE_WITH_FIELD_AND_NOTIFICATION'
+);
+wwv_flow_imp_page.create_page_validation(
+ p_id=>wwv_flow_imp.id(433341115779492873)
+,p_validation_name=>'New'
+,p_validation_sequence=>20
+,p_validation=>'( :P5_LENGTH > 0 and :P5_LENGTH <100)'
+,p_validation2=>'PLSQL'
+,p_validation_type=>'EXPRESSION'
+,p_error_message=>'The length should be between 1 and 99'
+,p_when_button_pressed=>wwv_flow_imp.id(433340572485492867)
+,p_associated_item=>wwv_flow_imp.id(433340914989492871)
+,p_error_display_location=>'INLINE_WITH_FIELD_AND_NOTIFICATION'
+);
+wwv_flow_imp_page.create_page_da_event(
+ p_id=>wwv_flow_imp.id(433340626836492868)
+,p_name=>'Generate Password'
+,p_event_sequence=>10
+,p_triggering_element_type=>'BUTTON'
+,p_triggering_button_id=>wwv_flow_imp.id(433340572485492867)
+,p_bind_type=>'bind'
+,p_execution_type=>'IMMEDIATE'
+,p_bind_event_type=>'click'
+);
+wwv_flow_imp_page.create_page_da_action(
+ p_id=>wwv_flow_imp.id(433340737201492869)
+,p_event_id=>wwv_flow_imp.id(433340626836492868)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_SET_VALUE'
+,p_affected_elements_type=>'ITEM'
+,p_affected_elements=>'P5_PASSWORD'
+,p_attribute_01=>'FUNCTION_BODY'
+,p_attribute_06=>'return app_pm_password_generator.generate_password(:P5_LENGTH);'
+,p_attribute_07=>'P5_LENGTH'
+,p_attribute_08=>'Y'
+,p_attribute_09=>'N'
+,p_wait_for_result=>'Y'
+);
+wwv_flow_imp_page.create_page_da_action(
+ p_id=>wwv_flow_imp.id(433340878293492870)
+,p_event_id=>wwv_flow_imp.id(433340626836492868)
+,p_event_result=>'TRUE'
+,p_action_sequence=>20
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_REFRESH'
+,p_affected_elements_type=>'ITEM'
+,p_affected_elements=>'P5_PASSWORD'
+);
+wwv_flow_imp_page.create_page_da_event(
+ p_id=>wwv_flow_imp.id(433341366854492875)
+,p_name=>'Copy Password'
+,p_event_sequence=>20
+,p_triggering_element_type=>'BUTTON'
+,p_triggering_button_id=>wwv_flow_imp.id(433341289992492874)
+,p_bind_type=>'bind'
+,p_execution_type=>'IMMEDIATE'
+,p_bind_event_type=>'click'
+);
+wwv_flow_imp_page.create_page_da_action(
+ p_id=>wwv_flow_imp.id(433341406589492876)
+,p_event_id=>wwv_flow_imp.id(433341366854492875)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_JAVASCRIPT_CODE'
+,p_attribute_01=>'copyPassword(null, ''P5_PASSWORD'');'
+);
+wwv_flow_imp_page.create_page_da_action(
+ p_id=>wwv_flow_imp.id(433341515725492877)
+,p_event_id=>wwv_flow_imp.id(433341366854492875)
+,p_event_result=>'TRUE'
+,p_action_sequence=>20
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_ALERT'
+,p_attribute_01=>'Password Copied'
+,p_attribute_02=>'Copy to Clipboard'
+);
+wwv_flow_imp.component_end;
+end;
+/
